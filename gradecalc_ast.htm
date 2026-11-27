@@ -1,0 +1,1572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+  xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <title>Grade Calculator for Astronomy</title>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+    <style>
+li p {margin-bottom:0px;}
+.style1 {
+	text-align: left;
+}
+.auto-style1 {
+	font-size: small;
+}
+</style>
+    <script language="JavaScript">
+
+function dosum()           
+{ 
+mt = parseFloat(document.calc.mt.value);
+fin = parseFloat(document.calc.fin.value);
+hw = parseFloat(document.calc.hw.value);
+pres = parseFloat(document.calc.pres.value);
+journal = parseFloat(document.calc.journal.value);
+partic = parseFloat(document.calc.partic.value);
+stargazing = parseFloat(document.calc.stargazing.value);
+mot = parseFloat(document.calc.mot.value)
+
+mt_wt = parseFloat(document.calc.mt_wt.value)
+fin_wt = parseFloat(document.calc.fin_wt.value);
+hw_wt = parseFloat(document.calc.hw_wt.value);
+pres_wt = parseFloat(document.calc.pres_wt.value);
+journal_wt = parseFloat(document.calc.journal_wt.value);
+partic_wt = parseFloat(document.calc.partic_wt.value);
+stargazing_wt = parseFloat(document.calc.stargazing_wt.value);
+mot_wt = parseFloat(document.calc.mot_wt.value)
+
+
+total = (mt*mt_wt + fin*fin_wt + hw*hw_wt + 
++ pres*pres_wt + journal*journal_wt + stargazing*stargazing_wt + partic*partic_wt)/100;
+
+active=partic+stargazing+pres
+//qualifies for bonus if participation components are at max
+//max participation components are necessary but not sufficient; mot has to be >=2
+
+bonus=.5
+if(active==9 && mot==3){bonus=1;}
+if(active>=7 && active<9){bonus=0.5;}
+if(active>=5.5 && active<7){bonus=.25;}
+if(active<5){bonus=0;}
+if(mot==3 && active<9){document.calc.mot.value=2;}
+if(active>=7 && mot<=1.5){bonus=.25*mot;}
+if(mot==0){bonus=0;}
+
+
+
+//if(bonus==1){alert("Great job!");}
+
+GPA = 2.5 + 2*(total-2.5) + bonus*mot_wt
+if(GPA>=4){GPA=4;}
+
+if(bonus==1){document.calc.comment.value="Outstanding participation!!!";}
+if(bonus==.5 && GPA>=2.7){document.calc.comment.value="Good participation!";} 
+if(bonus==.5 && GPA<2.7 && GPA>2){document.calc.comment.value="Decent participation but other areas may need some work."}
+if(bonus==.25){document.calc.comment.value="You could participate more.";}
+if(bonus==0 || partic<1.7 || stargazing<1.7 || pres<1.7 || mt<1.7 || fin<1.7){document.calc.comment.value="One or more areas has a serious weakness.";}
+
+if(journal>3 || hw>3 || stargazing>3 || pres>3 || partic>3 || mt>3 || fin>3 || mot>3){document.calc.comment.value="Values cannot be more than 3. Please try again." ;GPA="ERROR"}
+if(fin==0){document.calc.comment.value="Must take the final to pass the class.";GPA=0}
+
+//if(mot<=1){bonus=0;}
+
+
+document.calc.GPA.value = GPA
+document.calc.GPA.value = GPA.toFixed(1)
+document.calc.bonus.value=bonus*mot_wt
+}
+</script>
+    <meta content="Microsoft FrontPage 12.0" name="GENERATOR">
+    <script language="JavaScript" fptype="dynamicoutline">
+<!--
+function dynOutline() {}
+//-->
+</script>
+    <script language="JavaScript1.2" fptype="dynamicoutline" for="document" event="onreadystatechange()">
+<!--
+initOutline()
+//-->
+</script>
+  </head>
+  <body onclick="dynOutline()" language="Javascript1.2">
+    <center>
+      <h1><font size="5"><b>Grade Calculator</b></font></h1>
+      <form name="calc">
+        <table width="591" cellpadding="4" border="2" bgcolor="#99cccc">
+          <tbody>
+            <tr>
+              <td width="193">Midterm</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="mt">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="15" name="mt_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Final</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="fin">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="20" name="fin_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Homework/quizzes</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="hw">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="10" name="hw_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Journal</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="journal">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="10" name="journal_wt"> %
+                of the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Stargazing</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="stargazing">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="15" name="stargazing_wt">
+                % of the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Articles</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="pres">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="15" name="pres_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">General participation</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="partic">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="15" name="partic_wt"> %
+                of the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Leadership/Attitude</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="mot">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="0.5" name="mot_wt"> GP
+                units</td>
+            </tr>
+            <tr>
+              <td width="193"><input onclick="dosum()" value="Compute" name="button" type="button"></td>
+              <td width="415"><b>GPA: <input size="4" name="GPA"
+                    value="compute"></b></td>
+            </tr>
+            <tr>
+              <td style="height: 60px" width="193">Comment:</td>
+              <td style="height: 60px" width="415"><b> <input size="57"
+                    name="comment" value="Please enter some numbers and
+                    click on 'compute'." style="height: 55px"></b></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="style1"> <br>
+          ***Note that grade calculator outputs a grade based on a 4.0
+          scale, even though the input for each component is on a 3.0
+          scale.</div>
+      </form>
+      <center>
+        <h3 class="jquery-ui-filter-header
+          jquery-ui-filter-accordion-header">&nbsp;</h3>
+        <h3 align="left"><a href="#faqs">FAQ's</a><br>
+          <a href="#rubric">Rubric</a><br>
+          <a href="#sample">Sample evals</a></h3>
+        <p align="left">&nbsp;</p>
+        <h3 align="left"><a name="faqs"></a>FAQ's</h3>
+        <p align="left">Q: Why is each component scored on 3.0 scale
+          when the final grade is on 4.0 scale?<br>
+          A: A 3.0 scale was chosen to score each component because it's
+          relatively simple to use. Most people can distinguish between
+          excellent and poor. Excellent scores a 3 and poor scores a 1.
+          When in doubt or if neither extreme is appropriate, choose 2.
+          The grade calculator will then convert all these numbers into
+          your final grade on 4.0 scale.</p>
+        <p align="left">Q: The grade eval does not seem to be related to
+          the course material, so it's hard for me to take it seriously.
+          What's the penalty for not submitting a grade eval?<br>
+          A: The grade eval is your opportunity to take responsibility
+          for your successes and possible failures in the class. In that
+          sense, it is very much related to the class. Not submitting
+          the grade eval should be considered equivalent to not taking
+          an exam.</p>
+        <p align="left">Q: I'm very hard on myself and I know some
+          people will definitely inflate their grades. Wouldn't that
+          leave me at a relative disadvantage? <br>
+          A: Deliberate grade inflation is a form of academic dishonesty
+          and will not earn brownie points with the instructor. On the
+          other hand, those who demonstrate an ability to be
+          self-reflective will benefit by getting a high mark on this
+          particular assignment.</p>
+        <p align="left">Q: How do I know if I'm posting correctly and if
+          my grade calculator numbers are similar to those of the
+          instructor?<br>
+          A: Although there is certainly at least a small subjective
+          component in any evaluation scheme, those who follow the to-do
+          list and rubric guidelines typically get full credit for their
+          posts. Students who go above and beyond may also earn some
+          extra credit. Things to avoid include excessive cut-and-paste,
+          omission of a reference, obvious indifference to basic
+          research, etc. In the end, I will look at the pattern of your
+          submissions, compare these to those of the top students in the
+          class, and apply the online grading rubric.</p>
+        <p align="left">Q: How often do we need to submit the grade
+          eval?<br>
+          A: Everyone needs to submit two grade evals--one early in the
+          course and another one at the end of the course. The purpose
+          of the early grade eval is to give students a better
+          understand the grading process and motivate them take
+          responsibility for their own education. The final grade eval
+          is essentially a portfolio of all your work.</p>
+        <p align="left">Q: I have now finished module#1. What's my grade
+          so far?<br>
+          A: In this class, everything is graded on a rubric, not on a
+          growing collection of points.&nbsp;If you would like to
+          estimate your status in the class at any point in the class,
+          you will need to work through the grading rubric, generate
+          some reasonable numbers based on the rubric, and then plug
+          them into the grade calculator to come up with an estimated
+          grade in the class.&nbsp;I'm happy to give students feedback
+          after they have gone through this exercise and demonstrated an
+          understanding of the rubric. One important aspect of this
+          grading system is that a few blemishes on your record do not
+          drag down your grade, as long as the course-long patterns are
+          healthy. So perfectionism is never required, which hopefully
+          reduces potential stress and&nbsp;enhances&nbsp;the learning
+          process. </p>
+        <p align="left">Q: Does anyone else use this unusual grading
+          system?<br>
+          A: This grading system is similar in spirit to the narrative
+          evaluation system used at <a
+            href="http://www.evergreen.edu/evaluations/">Evergreen State
+            College</a>.&nbsp;</p>
+        <h3 align="left">Philosophy</h3>
+        <p align="left">As you probably know, assigning grades is a
+          difficult process that no teacher looks forward to. And
+          although grading is certainly not an exact science, we can
+          still strive to be as fair and as consistent as possible. To
+          help with the process and to make sure that you receive every
+          possible consideration, you will need to submit (in Canvas) an
+          analysis of the grade you think you deserve based on the
+          criteria discussed in the syllabus. Please use this calculator
+          to estimate your grade or range of possible grades. You may
+          play around with the weights (<i>i.e.</i>, percentages of
+          total grade) to nudge your grade a bit, but your estimate
+          should always be based on rational arguments rather than on
+          wishful thinking. Keep in mind that to have some standard and
+          help you with objectivity, you will need to compare yourself
+          to the strongest students in the class. Your estimate can only
+          help you, never hurt you, especially if it demonstrates an
+          ability to be self-reflective and objective. A <a
+            href="#sample">sample</a> analysis is provided below.</p>
+        <div style="text-align: left;">
+          <h3>Grade scale</h3>
+          <p>The grade calculator above should give you a grade which
+            corresponds roughly to the following GPA scale:</p>
+          <ul>
+            <li> <strong>4.0: Exceptional student</strong>
+              <ul>
+                <li>strong in every aspect of the class</li>
+                <li>strong contributor to learning community</li>
+                <li>passionate about learning</li>
+                <li>rarely/never complains about things being too hard</li>
+              </ul>
+            </li>
+            <li> <strong>3.0: Pretty good student</strong>
+              <ul>
+                <li>strong in most aspects of the class, with some
+                  weaknesses</li>
+                <li>average contributor to learning community</li>
+                <li>credit for the class is probably more important than
+                  the learning process</li>
+              </ul>
+            </li>
+            <li> <strong>2.0: Average student</strong>
+              <ul>
+                <li>weak in many areas but has a reasonable grasp of the
+                  important ideas</li>
+                <li>poor contributor to learning community</li>
+              </ul>
+            </li>
+            <li> <strong>1.0: Barely-passing student</strong>
+              <ul>
+                <li>Serious issues with effort and motivation (or
+                  evidence thereof)</li>
+              </ul>
+            </li>
+            <li> <strong>0.0: Little or no effort</strong>, virtually
+              no motivation (or evidence thereof) </li>
+          </ul>
+        </div>
+        <h3 align="left">Excellent-good-poor</h3>
+        <p align="left">A reasonable estimate of your grade can be
+          obtained using the excellent-good-poor scale for each
+          component, with appropriate weighting factors. Excellent earns
+          3, good 2, poor 1. If you're not very good or very bad in a
+          particular category, you're probably a 2. Since there is a
+          subjective component in this approach, you'll need to use your
+          judgment. The guidelines below should help you come up with
+          reasonable numbers. In general, the subjective components that
+          score higher are those that demonstrate a strong effort,
+          positive attitude, and good self-reflection.</p>
+        <h3 align="left">Different scenarios with calculator<img
+            src="hare&amp;turtle.jpg" width="311" height="201"
+            border="0"></h3>
+        <ul>
+          <li>
+            <h3 align="left">The lazy ace</h3>
+          </li>
+        </ul>
+        <blockquote>
+          <p align="left">Meg O'Hetz is a student who gets 100% on the
+            exams and homework but usually doesn't participate in
+            discussions, does not engage in stargazing activities,
+            writes shallow journals, and contributes little to the
+            learning community. This student will end up with a grade in
+            the neighborhood of 2.6 or less. So exams are not the whole
+            story.</p>
+        </blockquote>
+        <ul>
+          <li>
+            <h3 align="left">The hardworking plodder</h3>
+          </li>
+        </ul>
+        <blockquote>
+          <p align="left">Nysa Neezie is a student who gets about
+            average on the exams, struggles on the homework, but writes
+            in-dept and self-reflective journals, consistently asks
+            questions in class and engages in discussions, exhibits an
+            enthusiasm for learning. This student will earn a grade in
+            the neighborhood of 3.0 or better, which is not too shabby
+            for an average test taker.</p>
+        </blockquote>
+        <h3 align="left"><a name="rubric"></a></h3>
+        <h3 align="left">How to estimate final grade</h3>
+        <p align="left"> If you would like to estimate your status in
+          the class at any point in the class, you will need to work
+          through the grading rubric, generate some reasonable numbers
+          based on the rubric, and then plug them into the<span>&nbsp;grade
+            calculatorto come up with an estimated grade in the class.
+            I'm happy to give students feedback after they have gone
+            through this exercise and demonstrated an understanding of
+            the rubric. This also happens to be a required exercise
+            ('early progress report') due after the first week (see
+            Calendar).&nbsp;In general, you get full credit for
+            completing items in the weekly to-do list. Since most
+            students who submit do a very good job (sometimes after some
+            calibration), the only way to lose points on these items is
+            not to submit and/or completely ignore feedback. This means
+            that consistency and a good-faith effort, rather than
+            perfection, are the keys to success in this class. The score
+            you get for each component (e.g., articles) in the end will
+            be roughly the average of all the weekly scores. For
+            example, if you submitted articles and responses 80% of the
+            time, your score for this component on the grade calculator
+            will be 0.80*3+0.20*0=2.4 (out of 3). Make sure to submit a
+            self-evaluation quiz at least once (early in this class) to
+            get a feel for all the components.</span></p>
+        <h3 align="left">&nbsp;</h3>
+        <h3 align="left">How to score the components (Rubric)</h3>
+        <div style="text-align: left;">
+          <h2>Leadership/Attitude/Academic Maturity</h2>
+          <ul>
+            <li> <strong>3 -- excellent</strong>
+              <ul>
+                <li>outstanding contributor to the learning community</li>
+                <li>clearly one of the leaders in the class</li>
+                <li>clearly passionate about learning</li>
+                <li>one of the first to post introduction (in the
+                  Introductions forum)</li>
+                <li>consistently does more than the required minimum (in
+                  the to-do list)</li>
+                <li>consistently positive attitude and lots of
+                  enthusiasm</li>
+                <li>completely self-motivated and consistently fuels
+                  discussions</li>
+                <li>strong drive to learn and to motivate and educate
+                  others</li>
+                <li>consistently helpful to peers (answering questions,
+                  making suggestions, etc.)</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- good</strong>
+              <ul>
+                <li>does all that is required, but not much more</li>
+                <li>often participates in but usually does not initiate
+                  discussions</li>
+                <li>usually does not tackle challenging discussion
+                  questions</li>
+                <li>usually stays away from controversial or provocative
+                  topics</li>
+                <li>stays "invisible" for a big portion of the class;
+                  typically, the reserved observer</li>
+                <li>many hard-working but quiet people will fall into
+                  this category</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor</strong>
+              <ul>
+                <li>rarely goes beyond the bare minimum and often does
+                  not even do that</li>
+                <li>very inconsistent and/or posts little substance
+                  (beyond short, one-liners)</li>
+                <li>may complain about some vague difficulty without
+                  actually asking specific questions</li>
+                <li>stays "invisible" for most of the class,
+                  particularly in general discussion</li>
+                <li>typically indifferent, with no real passion to get
+                  involved or to contribute to the learning community</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>General participation</h2>
+          <ul>
+            <li> <strong>3 -- excellent participation</strong>
+              <ul>
+                <li>consistently contributes insight and substance to
+                  the learning community</li>
+                <li>consistently demonstrates basic research and clear
+                  effort to engage and educate peers</li>
+                <li>more proactive than reactive</li>
+                <li>consistently helpful/responsive to peers</li>
+                <li>always follows up in discussions (not simply one
+                  post at a time)</li>
+                <li>does not disappear for extended periods of time</li>
+                <li>frequently initiates discussions and generally
+                  follows up</li>
+                <li>frequently responds to discussion topics, including
+                  DQ's by instructor</li>
+                <li>frequently poses questions to clarify or extend
+                  material</li>
+                <li>frequently takes stands and expresses opinions</li>
+                <li>communicates without excessive cut-and-paste</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- decent participation</strong>
+              <ul>
+                <li>sometimes contributes insight to the learning
+                  community</li>
+                <li>more reactive than proactive</li>
+                <li> often, but not always, follows up in discussions
+                  <ul>
+                    <li>posting and then disappearing for several days
+                      or more would be considered a poor follow-up</li>
+                  </ul>
+                </li>
+                <li>sometimes responds to discussion questions;
+                  sometimes initiates</li>
+                <li>sometimes poses questions to clarify or extend
+                  material</li>
+                <li>sometimes takes stands and expresses opinions</li>
+                <li>some gaps in participation</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor participation</strong>
+              <ul>
+                <li>rarely contributes insight to the learning community</li>
+                <li>posts seem rushed, unresearched, and consistently
+                  shallow and often unrelated to current topic</li>
+                <li>posts often consist of excessive cut-and-paste, with
+                  no obvious processing</li>
+                <li>does not seem to pay attention to what others have
+                  posted</li>
+                <li> posts random factoids or factoid-oriented questions
+                  with no obvious intent to start a discussion
+                  <ul>
+                    <li>Example#1: What is the radius of the Earth?</li>
+                    <li>Example#2: How is everyone feeling today?</li>
+                  </ul>
+                </li>
+                <li>rarely follows up</li>
+                <li>rarely poses questions to clarify or extend material</li>
+                <li>rarely takes stands and expresses opinions on any
+                  issue brought up in class</li>
+                <li>seems indifferent much of the time</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>Weekly Quizzes</h2>
+          <ul>
+            <li> <strong>3 -- Excellent effort</strong>
+              <ul>
+                <li>Consistently on time, with scores of 80% or better.</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- Average effort</strong>
+              <ul>
+                <li>Some procrastination, with up to 3 quizzes
+                  significantly late (more than a few days).</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- Poor effort</strong>
+              <ul>
+                <li>Four or more quizzes missing or late by more than a
+                  week.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>Exams</h2>
+          <ul>
+            <li> <strong>3 -- upper third of the class</strong>
+              <ul>
+                <li>scores significantly above average</li>
+                <li>clear mastery of most of the material</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- middle third of the class</strong>
+              <ul>
+                <li>scores around average</li>
+                <li>decent though incomplete mastery of the material</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- bottom third of the class</strong>
+              <ul>
+                <li>scores significantly below average</li>
+                <li>serious gaps in understanding</li>
+              </ul>
+            </li>
+            <li> Typically, a score of 60-80% (depending on the average)
+              on an exam translates to a 2/3 on the grade calculator. A
+              score significantly above or below that translates to a
+              3/3 or 1/3, respectively. </li>
+            <li> <em>*Note: Consistently solid participation and a
+                substantive self-eval (similar to the examples below)
+                submitted at the end of the course can make up for some
+                weaknesses on the exams.</em> </li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>Stargazing</h2>
+          <ul>
+            <li> <strong>3 -- consistently insightful and educational</strong>
+              <ul>
+                <li>observations typically include background
+                  information, mythology, relevant links, etc.</li>
+                <li>observations often include explanatory images or
+                  diagrams and actual photos when the sky is clear</li>
+                <li>consistently includes exploratory Q&amp;A (at least
+                  2)</li>
+                <li>not deterred by uncooperative weather, refers to
+                  software (e.g., Starry Night or stargazing apps) when
+                  necessary</li>
+                <li>consistently helpful/responsive to peers</li>
+                <li>does not disappear for extended periods of time</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- average consistency and/or insight</strong>
+              <ul>
+                <li>clearly not one of the class leaders</li>
+                <li>minimal or inconsistent effort to educate</li>
+                <li>some interesting observations, but usually with no
+                  passion</li>
+                <li>typically does what's required, but not more</li>
+                <li>sometimes disappears for days at a time</li>
+                <li>often uses cloudy weather as an excuse not to post
+                  anything of substance</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- consistently shallow observations</strong>
+              <ul>
+                <li>very few substantive observations</li>
+                <li>very little effort to educate others</li>
+                <li> examples of shallow observations include:
+                  <ul>
+                    <li>"The sky is pretty cloudy. Can't see much." with
+                      no effort to offer information on what one could
+                      have seen</li>
+                    <li>"I think I saw some stars tonight." with no
+                      effort to name the stars</li>
+                    <li>"Check out this beautiful picture!" with no
+                      explanation as to why the picture should be
+                      considered remarkable</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>Journals</h2>
+          <ul>
+            <li> <strong>3 -- consistency and substance</strong>
+              <ul>
+                <li>regular analysis of progress/struggles in class</li>
+                <li>consistently discusses specific things learned</li>
+                <li>not timid about offering suggestions</li>
+                <li>frequently references activity in the forums</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- average depth and content analysis</strong>
+              <ul>
+                <li>steady but not a lot of depth or introspection</li>
+                <li>typically no more than a sentence or two</li>
+                <li>sometimes discusses progress in class or specific
+                  issues with content</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor effort</strong>
+              <ul>
+                <li>inconsistent, with multiple gaps of a week or more</li>
+                <li>consistently shallow entries</li>
+                <li>rarely discusses class content or 'mechanical'
+                  summaries of content clearly generated by ai</li>
+                <li>often one-liners, with little analysis</li>
+                <li> Examples of shallow entries include:
+                  <ul>
+                    <li>"Everything is cool. Nothing new to report."</li>
+                    <li>"The book sucks. I don't understand anything."</li>
+                    <li>"Had some pizza. It was great."</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li> <strong>Please avoid using AI to generate journals</strong>,
+              which will be considered plagiarism and will not satisfy
+              this assignment. Typical AI-generated journals look like
+              mechanical summaries. Above all, your journals need to
+              include your "raw" observations and self-reflection (e.g.,
+              what you like and what you are struggling with). </li>
+            <li>Note: Failure to submit a <strong>self-evaluation at
+                the end of the course</strong> can drop both the journal
+              and motivation scores by 1 unit each. An excellent
+              end-of-course self-evaluation, with solid introspection
+              and clear plan for improvement, can boost the overall
+              grade.</li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>Presentation (does not apply to online classes)</h2>
+          <ul>
+            <li> <strong>3 -- excellent</strong>
+              <ul>
+                <li>clear evidence of effort and time invested</li>
+                <li>went beyond class material</li>
+                <li>focused on important ideas, with little drag factor</li>
+                <li>consistently timely and meaningful feedback to
+                  peers, not simply 'You guys did great!'</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- decent job, characterized by some or all
+                of the following:</strong>
+              <ul>
+                <li>mostly review of class material</li>
+                <li>some drag factor</li>
+                <li>some mumbling, some reliance on notes</li>
+                <li>ok (but not stellar) feedback to peers</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor, characterized by some or all of the
+                following:</strong>
+              <ul>
+                <li>poor organization with no obvious big picture</li>
+                <li>excessive mumbling and poor eye contact, excessive
+                  reliance on notes</li>
+                <li>feedback is consistently shallow and/or late (e.g.,
+                  not submitted right after each presentation)</li>
+              </ul>
+            </li>
+            <li> <em>*Grading is more lenient for the early
+                presentations. Those who present near the very end are
+                expected to deliver perfection and will be graded from
+                that perspective.</em> </li>
+          </ul>
+        </div>
+        <div style="text-align: left;">
+          <h2>Science Articles</h2>
+          <ul>
+            <li> <strong>3 -- excellent articles and feedback</strong>
+              <ul>
+                <li>consistent submission of well-formatted articles
+                  (see syllabus)</li>
+                <li>interesting topics, sometime provocative and
+                  controversial</li>
+                <li>insightful questions and answers</li>
+                <li>consistently meaningful feedback to peers</li>
+                <li>clear effort to educate and learn from others</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- pretty good articles and responses</strong>
+              <ul>
+                <li>missed a week here and there</li>
+                <li>some feedback to peers</li>
+                <li>delivery steady but not exciting</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor articles</strong>
+              <ul>
+                <li>inconsistent delivery and/or poor formatting</li>
+                <li> examples of poor formatting include:
+                  <ul>
+                    <li>meaningless subject line</li>
+                    <li>obvious cut and paste</li>
+                    <li>no link/reference</li>
+                  </ul>
+                </li>
+                <li>uninteresting articles</li>
+                <li>little or no meaningful feedback to peers</li>
+                <li>obvious absence of enthusiasm</li>
+              </ul>
+            </li>
+          </ul>
+          <p><em>Note that there is an automatic deduction of
+              approximately 0.25 in any component for every week where
+              there is little or no activity. Excessive cut and paste
+              from ai can also result in signficant penalties.</em></p>
+        </div>
+        <h3 align="left"><a name="sample"></a>Sample grade evals</h3>
+        <p align="left">The key to a good self-evaluation is to be more
+          critical of oneself than of others. Making excuses, rather
+          than taking responsibility, tends to slow down the learning
+          process. The following examples demonstrate excellent
+          self-reflection and suggest that these students are ready to
+          take the next step up.</p>
+        <h3 align="left"><br>
+          Very poor eval</h3>
+        <p align="left">"I deserve an A because my attendance was good
+          and I tried really hard."</p>
+        <p align="left">This evaluation does not specifically address
+          grading criteria. It is simply an emotional response, with
+          little depth or evidence of self-reflection, by a student who
+          probably did very little in class and was not aware of the
+          problem. His/her grade was significantly lower than his/her
+          estimate.</p>
+        <h3 align="left">Poor eval</h3>
+        <p align="left">"I believe I should earn at least a 3.0 because
+          I did all my assignments on time and took the time to read the
+          chapter and learn the subject on hand.&nbsp; I probably could
+          have done better on the Discussion Board because some weeks I
+          did not reply a lot and some I did.&nbsp; Being that this was
+          my first online class, I feel confident that I did well even
+          though Astronomy was a really tough subject for me. Also, I
+          just finished the final and I feel really good about it.&nbsp;
+          Overall, I enjoyed this course even though I struggled through
+          some of it but I did manage to make it to the end and that's
+          very important.&nbsp; Thanks and take care teach..."</p>
+        <p align="left">This student, though good-natured, did not
+          specifically address the grading criteria. He received
+          significantly less than his estimate.<br>
+          &nbsp;</p>
+        <h3 align="left">Another poor eval</h3>
+        <p align="left">"I believe that I deserve a grade of the range
+          of around 2.7. After completing all of my assignments, my
+          percentage was about 80%. This shows that I understood most of
+          what we learned. Also, for almost every assignment, my score
+          was above the class average which shows that my scores were
+          above a lot of the people in the class. Even though I didn't
+          join in the discussions as much as I wanted to, I feel that my
+          assignment scores should prove that I actually learned. This
+          class taught me a lot of new interesting things about the
+          universe that I had never known before."</p>
+        <p align="left">Again, this student used his gut feeling and did
+          not specifically follow the rubric. He appears to focus mostly
+          on homework points, which (according to the rubric) are not a
+          significant component of the grade. On the other hand,
+          stargazing and articles, which collectively are more
+          important, are missing from his analysis.</p>
+        <h3 align="left">Good eval, but missing overall summary and plan
+          for improvement</h3>
+      </center>
+      <p align="left">Grade calculator: 2.7<br>
+        <br>
+        <b>Motivation/Leadership/Attitude</b>: I tend to be a really shy
+        person when it comes to speaking up in class. Even though this
+        class was online, I still had trouble initiating discussions. I
+        feel that I did participate in class as much as I felt
+        comfortable doing. I tried my best in answering my peers
+        questions and I tried to think of things to discuss with my
+        peers as well. I felt that I worked hard on my homework and
+        other assignments. I did really enjoy learning about the
+        universe and all that it involves which I think gave me a good
+        attitude toward all the assignments. Overall, I think my
+        participation in this class could have been better, but I think
+        that with my shyness I did the best that I could. So for this
+        section I thought that I'd give myself a 2.<br>
+        <br>
+        <b>Homework</b>: In a lot of my homework assignments I ended up
+        submitting them on the day that they were due. But this doesn't
+        mean that I procrastinated. Taking the advice of others, I would
+        print the questions, search for the answers and then submit my
+        answers later. I would try and work on at least 20-30 questions
+        a day depending on how many questions were on the homework. I
+        think that I did extremely well on the homework considering how
+        hard it seemed to be at times. On the homework I would get about
+        70-80%. This made me really happy. And usually I am the type of
+        person to procrastinate (especially in online classes), but I
+        really tried to not do that this quarter and I think that I did
+        a really good job! So for the homework section I gave myself a
+        3.<br>
+        <br>
+        <b>Exams</b>: Before the midterm I really made sure that I
+        studied as much as I could. I was hoping that I would get at
+        least a 70%, but instead I scored a 58%, which was the average
+        for the class. I was a little bummed at first but then I
+        realized that I studied as much as I could and there was nothing
+        else I could've done to help me do better. Hopefully I will do a
+        little better on the final. I'm going to set a goal for myself
+        of getting in the average score of the class again. For both the
+        final and midterm section, I gave myself a 2.<br>
+        <br>
+        <b>Stargazing</b>: With the weather this quarter it was really
+        hard to stargaze. Even though this was the case, I made the best
+        of it and used programs like Starry Night and the Sky &amp;
+        Telescope Interactive Sky Chart. I always tried to find new
+        constellations and things that I haven't seen or posted about
+        before. I also always tried to give background information or
+        the history of the constellation. At first stargazing was a
+        little hard and I felt like I didn't know what I was looking at.
+        But now I feel that I can look at the sky and actually see
+        things and name them. Comparing myself to others in the class, I
+        still feel that I don't know as much as much or understand as
+        much as them. So because of this I gave myself a score of 2.5.<br>
+        <br>
+        <b>Journals</b>: Starting this quarter I posted three journals
+        each week. After that it was kind of hard for me to post three
+        each week, so I started posting just two each week. I still felt
+        that I was thorough and honest about my progress in the class
+        and I felt that two posts a week was good to explain everything.
+        I really liked posting journals because it was a way to express
+        your thoughts and maybe even concerns. I gave myself a score of
+        3.<br>
+        <br>
+        <b>General Participation</b>: I really enjoyed taking this class
+        and I felt that I contributed as much as I could. I invested a
+        lot of my time into studying and preparing for this class.
+        Online classes can be hard to get motivated, but since this
+        class was really interesting, I was able to spend more time on
+        it. I think overall in this class I did a good job, but I think
+        that i could have pushed myself to participate a little more. So
+        because what I could've pushed myself to do, I gave myself a 2
+        in this section.<br>
+        <br>
+        <b>Science Articles</b>: I really enjoyed posting articles on
+        different subjects and reading about the articles that others
+        posted. I think it was nice to be able to pick an article on any
+        topic, even though a lot of people still tried to keep them
+        science related. I thought that these articles were a really
+        good way to learn about new technologies and new things in
+        general. I think that for this section I earned a 3 because I
+        always posted articles each week and I made sure to respond and
+        ask questions about other student's articles as well. <br>
+        &nbsp;</p>
+      <h3 align="left">Another good eval</h3>
+      <p align="left">This student demonstrates character and excellent
+        self-reflection by being tough on herself, avoiding grade
+        inflation, and not coming up with excuses. She was rewarded with
+        a grade significantly higher than her calculation.</p>
+      <p align="left">Grade calculator: 1.4</p>
+      <p align="left">First, I think this has been the most challenging
+        class I have ever taken, more so than math! The good thing about
+        this class is as much work as it was, when I have a moment to
+        sit down (now that the quarter is over) and really digest the
+        information, more things will come to mind and I will look it up
+        and continue to learn more about astronomy! Now to the grading:<br>
+        <br>
+        Midterm: I did it on time and finished all of the questions. I
+        put effort and time into it. I didn't do very well (I really
+        thought I would have done better), so I gave myself a 1.</p>
+      <p align="left">Final: This was HARD, I know I did not do well at
+        all and the short answer questions were baffling. I did not
+        cheat and look things up, I did what I could with what I knew at
+        the time so I gave myself a 1.</p>
+      <p align="left">Homework: I saw that I had two holes in my
+        homework. I swear that I did them, but the computer does not
+        lie, so I am missing two. I tried my hardest even though I did
+        not keep up with the crowd. Because I put effort into it and
+        tried, I gave myself a 1.<br>
+        <br>
+        Journal: I did many journals, probably not as much as others,
+        but I did put thought into what I was writing and trying to
+        "check in" with you. I feel I did a pretty good job with the
+        journals so I gave myself a 2.</p>
+      <p align="left">Stargazing: I did a lot of stargazing and stayed
+        away from "It's cloudy outside and there are no stars!!!" I put
+        thought into what I was doing. Stargazing was difficult for a
+        beginner to do because I was always second guessing myself, and
+        it seemed almost embarrassing because most other people seemed
+        to know more than me, so I gave myself a 2.</p>
+      <p align="left">Articles: I feel that this is my strongest area
+        because I did a lot of them and felt I did them right. These
+        were also the most fun part of the class for me because just
+        about anything goes! I feel that this can show off your
+        personality, by what you choose. Some days I was going to post
+        but did not find one that suited me. I think looking up articles
+        will be one thing I keep doing to keep up on current events!! I
+        gave myself a 3.</p>
+      <p align="left">Participation: I did participate by answering some
+        of the DQ's and responding to others in the forum. I also
+        responded to others in the articles and stargazing areas as
+        well. I did not do as much as I should have done because I felt
+        like I was late when a bunch of people had already answered, but
+        that is my problem :( But overall, I feel that I did okay, so I
+        gave myself a 2.</p>
+      <p align="left">Motovation/leadership: I'm not saying I am lazy,
+        but I always felt like I didn't really have anything smart to
+        post, like an insightful question. So I never really posted
+        anything of my own in the general discussion--well, maybe a
+        couple of times. I have been motivated, though, because I have
+        been here and reading/responding to others and taking a bite out
+        of some of the DQ's. So I only gave myself a 1.<br>
+        <br>
+        The grade calculator came up with a 1.4. Although I got low
+        scores, I have tried to do well throughout the quarter, I feel
+        that somewhere in this range is fair for my final grade. What do
+        you think?</p>
+      <h3 align="left">Another good eval</h3>
+      <p align="left">This eval again demonstrates excellent
+        self-reflection and understanding of the learning objectives.
+        This student received a significantly higher grade than he
+        calculated because of his honesty, good attitude, and an
+        excellent effort on some of the course components (e.g.,
+        articles).</p>
+      <p align="left">Grade calculator: 1.8<br>
+        <br>
+        Midterm--1. I did not do as well on the mid term as I thought I
+        should have. Although I studied the material, I do not feel that
+        I put enough time in learning what I studied, and it reflected
+        on my score.<br>
+        <br>
+        Final--2. Although I have not taken the final yet (mostly
+        because of technical errors) I know how much work I put into
+        getting ready for it and feel I will do well!<br>
+        <br>
+        Homework--2. On many of the homework assignments I gave it
+        multiple attempts to get as high a score as I could. I know that
+        much of what I read, I could comprehend and used it outside of
+        class when the opportunity presented itself. I think towards the
+        end of the quarter my research skills improved and my quiz
+        scores did as well.<br>
+        <br>
+        Journal--2. This score could have been better with a little more
+        motivation on my part. Although writing about what I am doing or
+        trying to do is a weakness of mine, this was an opportune time
+        to strengthen that weakness and I didn't do that well enough.<br>
+        <br>
+        Stargazing 2. I am not sure whether to put this score lower or
+        higher. I tried many nights to find Andromeda and some of the
+        other more difficult constellations and objects in the sky. I
+        didn't, however, articulate that in the forum very well. I think
+        when I did though, it inspired others to look for them also and
+        started a dialogue on what we discovered.<br>
+        <br>
+        Articles--3. I think this area was my strongest overall. I
+        presented an article every week and I tried, I believe
+        successfully, to find an article that corresponded with what we
+        were studying during that week. Many of my articles received
+        multiple replies from my classmates as well.<br>
+        <br>
+        Group Presentations--2. Although we didn't give a group
+        presentation, I had to put a number there in the rubix. I chose
+        2 because I feel I contributed to the class as a whole with
+        interesting articles, responses to other articles, and thought
+        provoking arguments at times.<br>
+        <br>
+        Motivation/Leadership--2. I think my motivation should have been
+        better in the stargazing forum. I think with a bit more effort
+        in that genre, I could have contributed to others' learning as
+        well as my own. I think at times my leadership in answering or
+        trying to answer general discussion questions was adequate. I
+        answered a few of them correctly and read others' answers and
+        found out information which helped me as well.<br>
+        <br>
+        Overall, I found this class to be demanding, but fair. I think
+        the syllabus covered everything well enough to give the students
+        a good understanding of what was expected and how to achieve the
+        best grade possible. I really enjoyed taking this course and
+        will take from it much more information and knowledge about our
+        universe than I had before this journey. However, I must give
+        myself a grade on the low end of the scale if I am to be honest
+        in my evaluation. The grade calculator graded it to be 1.8. I
+        concur with that assessment!</p>
+      <h3 align="left">Another good eval</h3>
+      <p align="left">This student demonstrates academic maturity and a
+        hard-work ethic and set an excellent example in the class.
+        He/she received significantly higher than his/her calculated
+        grade.</p>
+      <p align="left">Wow, asking a student what grade they think they
+        should get, different, but good. To be quite honest, I think my
+        grade should be somewhere between a 2.6 and a 2.8, here is my
+        reasoning: </p>
+      <p align="left">1. Midterm - there is no denying that I did not do
+        as well as most of the class, nor as well as I hoped to do, but
+        I did my best and the only resource I used was my “noodle” (as
+        my niece calls it). My total score was below the class average,
+        but as you said in your post a score in the mid 20's to low 30's
+        is a 2; therefore, I gave myself a 2. </p>
+      <p align="left">2. Final - we have not taken it yet, but I had to
+        put a grade, so I gave myself a 2. I figure, if I study hard,
+        participate, and review past posts I should do fine. </p>
+      <p align="left">3. Homework - My homework scores have consistently
+        been above the class average and roughly, in the mid 70's to
+        low/mid 80's (percentage); therefore, I gave myself a 3. </p>
+      <p align="left">4. Journal - This is one of the hardest things for
+        me to do, but I think I have done a good job thus far;
+        therefore, I gave myself a 2.3. </p>
+      <p align="left">5. Stargazing - I think I have been consistent
+        with my stargazing. I have been out looking at the sky and if I
+        am unable to view any stars I have researched stars and
+        constellations for the benefit of the class; therefore, I gave
+        myself a 2.5. </p>
+      <p align="left">6. Articles - I have consistently provided well
+        written and interesting science articles - most concerning
+        astronomy and have provided feed back to others in the class and
+        tried to engage in dialogue with others regarding their
+        articles; therefore, I gave myself a 3. </p>
+      <p align="left">7. General Participation - This is not an excuse,
+        just the facts. Considering that, I work full time and my
+        commute from Fife to Seattle takes me away from my capture for
+        about 12 hours each day (M-F), I think I have participated
+        pretty well. I know others have posted hundreds of posts over
+        the course of the quarter thus far, and some of those posts were
+        worthless rants about how they liked the chapter, or why your
+        syllabus was 19 pages. I find these posts to be useless and
+        frankly, a waste of time; therefore, I did not post such
+        thoughts. I would think you would be more interested in quality
+        not quantity. I feel my posts were well thought out and provided
+        information to all who read them; therefore, I gave myself a
+        2.5. You will note that I only gave myself a 2.5 because there
+        were some in the class who really participated and definitely
+        deserve a 3, I did my best with the time I had and feel my best
+        is worthy of a 2.5. </p>
+      <p align="left">8. Motivation/Leadership - I didn't always lead
+        and I didn't always follow but I think I did both and I think I
+        did them pretty well. I was very motivated in this class. I read
+        each chapter (sometimes 2-3 times) and I stargazed, pulled
+        interactive star charts, researched stars and constellations for
+        the benefit of the class, and provided weekly articles that were
+        interesting and thought provoking, therefore, I gave myself a
+        1.5. I think the top grades in each category are reserved for
+        the students who exhibited exemplary work and participation. I
+        did my best and think I earned the two 3’s I gave myself and the
+        other grades as well. When calculated using the grading
+        calculator I get a 2.7. I think for this class that’s a pretty
+        darn good grade, considering math and science have always been a
+        challenge for me! Of course, this is just my view of how I think
+        I did this quarter, and will respect whatever grade you
+        ultimately give me, as I am sure you will give me the grade you
+        think I have earned. Thank you. </p>
+      <h3 align="left">Another good eval</h3>
+      <p align="left">Grade calculator: 3.2 GPA<br>
+        <br>
+        Participation: I feel that I did a really good job here because
+        I was always responding to things and asking questions. I think
+        it is important and hard to show participation on an online
+        class because you are not there to have the teacher listen to
+        you. I tried really hard to demonstrate my knowledge in all the
+        assignments and asked questions to better my self and gain
+        knowledge. I am really interested in astronomy which is why I
+        believe I participated so much.<br>
+        <br>
+        Homework: Although it will appear that I turned in my
+        assignments shortly before the deadline, I was prepared a great
+        deal of time before I submitted them. Home work was one of the
+        things that I really worked hard at because it was a lot of
+        work. I saved my answers on the computer in days prior to the
+        assignments being due so that I can go through and correct them
+        without wasting my submissions. I tried a lot of the time not to
+        use any other sources other than my book on the homework to
+        challenge myself and I feel I learn better that way. Although I
+        never got all the answers right on all the homework’s, but I
+        know I still learned a great deal.<br>
+        <br>
+        Exams: Prior to both the midterm and the final, I studied for
+        weeks to prepare. I really wanted to do well on these
+        assignments because I have always had a lot of pressure put on
+        me in the past for them. I know I am not the best test taker
+        because I really don’t like the pressure, I get all caught up
+        and frustrated that I get off track from focuses. This quarter I
+        thought I did exceptionally well and I think that had a lot to
+        do with studying and preparing myself better. I wish I would
+        have done better on my exams but overall I am happy with the
+        knowledge I learned and the success I made. I know I did a lot
+        better on my Final then the Mid-term. However, I do not feel
+        that either reflects what I really know and have learned
+        throughout the quarter.<br>
+        <br>
+        Articles: This was a part of the class I really enjoyed. I
+        really had a fun time reading articles that I chose and ones
+        that others had picked. My favorite part overall I think was
+        picking any topic I wanted. Although it was nice to read some
+        involving astronomy, it was neat to take a little break and
+        discuss some other things with the class. I thought this was a
+        good way to participate in the class and I liked learning about
+        my classmates.<br>
+        <br>
+        Stargazing: This was definitely another part of the class I had
+        a lot of fun doing. My only regret is taking this class in a
+        quarter where the weather was going to be so bad. I love to look
+        at the stars because I think it is so beautiful and amazing. I
+        really enjoyed taking this class because I learned about those
+        stars and other things in the sky. Now I have the most fun
+        looking at the stars with friends and being able to tell them
+        what those things are and show off my new knowledge. It was
+        really a lot of fun!<br>
+        <br>
+        Journals: I have never been one to write journals or reflect
+        things down on paper, but it was really nice to do so. I like
+        getting everything out and getting an understanding of the way I
+        feel. I think it was a helpful tool and let us write down
+        anything that we wanted to write down. <br>
+        <br>
+        Motivation/Leadership: I think that my motivation could have
+        been better than it was. I do feel that I did well and
+        participated a great deal but I could have encouraged other to
+        participate just as much. I think this was a challenge being in
+        an online class because you don’t get to present yourself to the
+        class, or see any of your classmates. I know I could have
+        motivated better and lead better if I had been in an actual
+        classroom with my classmates.<br>
+        <br>
+        Overall: I really enjoyed taking this class and have no regrets.
+        I found this class to be demanding… but fair. The grade
+        calculator gave me a 3.2 and I really feel that is what I
+        deserved. I feel that my only downfall would be my scores on the
+        exams but I feel that is because I am a bad test taker. I really
+        did participate a whole lot and got every assignment in on time.
+        This was a great class where I gained a lot of new knowledge and
+        I am excited to go show that off!</p>
+      <h3 align="left">Another good eval</h3>
+      <p>The Grade Calculator came up with 3.2.</p>
+      <p>Midterm: For the midterm I gave myself a 2 because I was
+        average in the class, which I am happy with being, I wish I did
+        a little better, but even though my midterm score does not
+        reflect it I tried hard and learned a lot! I went over the
+        chapters and skimmed them before the midterm and looked over the
+        homework, I felt I was as ready as I could be so I did my best.</p>
+      <p>Final: I have not taken the final yet but I gave myself a 3
+        because I am going to really try hard to improve my grade from
+        the midterm, and I want to get an above average score. I think I
+        can do it. I understand the chapters very well, and I will
+        continue to go over them to improve my chances for this goal.</p>
+      <p>Homework: I did very good with the homework. I always turned it
+        in before it was due, and my scores were average or a little
+        above so I gave myself a 3. I am confident with my scoring
+        because I know I always tried hard to get the right answers out
+        of the book, and I made sure it was always submitted before it
+        was due. I could not find every answer nor did I learn
+        everything in the book that I read, but the things I did
+        understand will now make me a smarter and more experienced
+        person, and I am glad I can take away a lot more new information
+        I never knew before.</p>
+      <p>Journal: I turned in my journal twice every single week like
+        the assignment said to. I never missed one, and made sure to
+        always right down my feelings for the week. I put a 3 for this.
+        I think I could of done a little better and maybe expressed my
+        feelings a little more. I will try to do this in future online
+        classes, this was my first class, but that is not an excuse
+        because the assignment was very clear. Overall on the journals
+        though I think I had good effort.</p>
+      <p>Stargazing: This part of the class, was a little more difficult
+        for me. At first I did not quite get the star chart. I then
+        figured it out though. I turned in 2 stargazing sessions every
+        week, and never missed any weeks. I gave my self a 3 for being
+        on top of my assignments. I made sure that even if it was cloudy
+        I would still do some work, so I used starry night a lot to make
+        sure I was active in the stargazing forum. I tried to share
+        information about what I had found to help the class learn as
+        well.</p>
+      <p>Articles: the articles was a fun part of the class. I liked
+        seeing all the different articles people came up with. Some
+        would even post articles that did not really have to do with
+        science which I thought was amusing. I turned in an articles
+        every week, and responded to other articles along the way. I
+        gave myself a 3 for this. I always tried to find an article that
+        would directly relate to astronomy and I had good effort in
+        that. Overall I think this was a good exercise to get students
+        to participate and have fun.</p>
+      <p>General Participation: This is the area where I was weakest at.
+        I could have been more active in here. I always made sure to
+        post atleast twice a week in the general discussion, which was
+        what was assigned, but I still think I could of had more
+        conversation with the other students. I give myself a 2 in this
+        category, because I could of have more effort thrown this way.
+        Next online class I am going to make sure to try harder on this
+        aspect.</p>
+      <p>Motivation/Leadership: For this part I think I did an average
+        job, so I will give myself a 2. I once in awhile would have a
+        good question or comment that popped in my head and I would post
+        it. I also tried to answer a few DQ's. But I think I could have
+        done more to earn a 3. I am disappointed that I did not try
+        harder for this part and for the general participation. I think
+        these are actually the easiest parts of the class to do well in
+        because all you have to do is show an interest and presence in
+        the conversations. I will definitely try to improve the quality
+        of me.</p>
+      <p>Overall, I think the grade calculator gave me a fair number. I
+        did not put in a 4.0 effort, so I do not deserve that, the 3.2
+        that it gave me seems very fair to me, because I did all my work
+        with good effort, but there was room for some more effort. This
+        class has broadened my skills of online classes since it is my
+        first, and it was challenging, but I enjoyed it as well!</p>
+      <h3 align="left">&nbsp;</h3>
+      <h3 align="left">Another good eval</h3>
+      <p align="left">Grade calculator: 4.0 GPA<br>
+        <br>
+        Exams: I studied extensively for the midterm and for the
+        final.&nbsp; On the midterm I scored 83% and on the final I also
+        scored 83%.&nbsp; The average score according to Canvas is in
+        the high 50 percentile region for both of those tests, so
+        statistically it seems very likely I scored in the upper third
+        on the class.<br>
+        <br>
+        Homework: I did every single homework assignment and usually
+        averaged around 95% on them.&nbsp; I have little doubt this
+        places me at least in the top third of the class, and probably
+        significantly higher than that.&nbsp; I never had any homework
+        related questions, but if I saw someone post a question that I
+        had a good answer for I would answer it without
+        hesitation.&nbsp; I never procrastinated.&nbsp; I generally
+        started and finished the homework within a 90 minute time frame.<br>
+        <br>
+        Journals: I wrote in depth journals at least twice a week every
+        week detailing my progress in the course, and letting you know
+        any feedback or ideas I had that I thought you might find to be
+        of interest. I felt like you would have a good idea of where I
+        was in the class at any given time by reading my journal
+        entries.<br>
+        <br>
+        Stargazing: I made sure to stargaze at least two times a week
+        every week except one where I was unable to get out for several
+        consecutive nights.&nbsp; On that particular instance I
+        stargazed 4 times on the following week to make up for lost
+        time. I tried to provide interesting factoids about my
+        observations when possible, and when the weather was
+        uncooperative I tried to explain what my plans were to have
+        been. I frequently used the software to plan in advance and
+        never disappeared for an extended period of time.<br>
+        <br>
+        Articles: I posted an article every week and read through and
+        responded to the articles of two other students that I found to
+        be of interest.&nbsp; They were always in the proper format, of
+        interesting subject matter and explored the material in a way as
+        to draw others into what I had found so interesting about
+        them.&nbsp; I tried to be provocative in my responses to others.<br>
+        <br>
+        Participation: I posted both early and often, while frequently
+        starting interesting discussions.&nbsp; My thought provoking
+        questions certainly seemed to provoke others to think and when
+        others posted interesting queries I didn't hesitate to respond
+        to them.&nbsp; I never failed to express my opinion about any
+        relevant subject I had an opinion on, and I didn't cut a paste
+        anything.<br>
+        <br>
+        Motivation/Leadership: I posted several times a week in the
+        general forum, and attempted to lead and to motivate others
+        through my posts into giving me interesting responses. Others
+        frequently responded to me and I felt like I helped a lot in
+        drawing others into interesting conversations.&nbsp; It was easy
+        to stay highly motivated during the entire class given how
+        interesting the subject matter was.<br>
+        <br>
+        General: I really enjoyed this class and I felt like this
+        contributed greatly to how willing I was to invest more time
+        into it. Usually with online classes I've found myself putting
+        in minimal effort, but this one was different and drove me to
+        study harder.&nbsp; This was predominantly a characteristic of
+        how interesting the subject matter was. I think I did an
+        excellent job overall in this class, and it seems to me to be a
+        find way to end my community college career before moving on to
+        a four year university.&nbsp; I believe I earned a 4.0 in this
+        class due to outstanding achievement in all of the areas of the
+        class.</p>
+      <p align="left">&nbsp;</p>
+      <h3 align="left">An excellent grade eval, but missing overall
+        summary and plan for improvement</h3>
+      <p align="left">This student demonstrated a passion for learning
+        throughout the quarter, was a leader in most aspects of the
+        class, and finished off with an excellent grade eval, clearly
+        worthy of a 4.0.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">I gave myself
+        all 3s, so the grade calculator gave me a 4.0</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Here’s my
+        reasoning for that grade.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">&nbsp;</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Midterm—From
+        your standards (5 or more above average = 3), I got a 3 on the
+        midterm.<span style="">&nbsp; </span>I felt very apprehensive
+        about it, because I hadn’t been reading all of the lecture
+        notes.<span style="">&nbsp; </span>But when I read how others
+        in the class were studying, I knew I had to work harder.<span
+          style="">&nbsp; </span>I read through all the lecture
+        notes—most of them several times—and reviewed key points from
+        the chapters.<span style="">&nbsp; </span>I did not use my book
+        or any other outside sources, but was pleasantly surprised to
+        find that as I read the questions on the test, I knew most of
+        the answers.<span style="">&nbsp; </span>My score demonstrates
+        the hard work I put in after some low scores at the beginning of
+        the quarter.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;"><span style="">&nbsp;</span></p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Final—I gave
+        myself a 3 for the final because I’m consistently spending more
+        time studying now than I did before the midterm.<span style="">&nbsp;
+
+        </span>I’m learning a lot, and I know most of the information is
+        sticking, because I’ve been able to answer some of the other
+        students’ questions on the discussion boards.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">&nbsp;</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Homework—The
+        very first homework assignment was a bit shocking.<span style="">&nbsp;
+
+        </span>I’m a 4.0 student for the second year in a row here at
+        Highline, but I’ve never taken an online class.<span style="">&nbsp;
+
+        </span>I scored significantly below average on that first
+        assignment.<span style="">&nbsp; </span>Lots of my earlier
+        journal entries show the horror and discouragement I was feeling
+        from missing lots of questions on the homework.<span style="">&nbsp;
+
+        </span>However, I have changed my study habits significantly,
+        mostly through trial and error.<span style="">&nbsp; </span>I’ve
+        spent more time figuring out how to study for this class than
+        any other class at Highline, but it’s paid off.<span style="">&nbsp;
+        </span>On every homework assignment except the first one I have
+        scored significantly higher than the class average.<span
+          style="">&nbsp; </span>For the most part, every week I would
+        miss fewer questions.<span style="">&nbsp; </span>My scores on
+        the homework show how I have applied myself in an effort to
+        redeem my poor performance that first week.<span style="">&nbsp;
+        </span>I applied the advice in the syllabus about perfectionism
+        and procrastination, and the result is a homework grade I am
+        proud of.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">&nbsp;</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Journal—I gave
+        myself a 3 for journal.<span style="">&nbsp; </span>I posted
+        twice almost every week (I think there were one or two weeks
+        where I posted more or less).<span style="">&nbsp; </span>Yes,
+        there were a few stressed-out posts that may have sounded whiny.<span
+          style="">&nbsp; </span>Yes, there were posts I forgot to put
+        the date on.<span style="">&nbsp; </span>I apologize for both
+        of those things.<span style="">&nbsp; </span>They were the
+        downfall of my early journals.<span style="">&nbsp; </span>But,
+        as I have previously said, this quarter was all about learning,
+        and not just about astronomy. My journals became more positive
+        (and had dates at the top, just like the syllabus said) as the
+        quarter went on.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">&nbsp;</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Stargazing—The
+        stargazing definitely scared me the most about this course.<span
+          style="">&nbsp; </span> It’s the first week of the quarter,
+        the middle of winter, raining or cloudy every night, and I
+        remember thinking, “How can this possibly work?”<span style="">&nbsp;
+
+        </span>But, the syllabus said we could post about other aspects
+        of the weather if we couldn’t see the stars.<span style="">&nbsp;
+
+        </span>There were a few weeks when I had to do that, but for the
+        most part I braved the cold to observe constellations.<span
+          style="">&nbsp; </span>I learned so much from watching the
+        stars—it became my favorite aspect of class.<span style="">&nbsp;
+
+        </span>I can point out constellations to my friends.<span
+          style="">&nbsp; </span>I can’t wait for summer to spend time
+        stargazing without having my face get numb from the cold!<span
+          style="">&nbsp; </span>I didn’t post more than twice each
+        week because honestly, stargazing posts tended to be the most
+        redundant.<span style="">&nbsp; </span>But I did try to make my
+        posts helpful to other students—asking questions, giving tips on
+        what’s visible, and posting links to helpful sites.<span
+          style="">&nbsp; </span>When other students posted with those
+        things, I enjoyed it much more than the typical “I found _______
+        constellation.” or, “It was cloudy again.”<span style="">&nbsp;
+        </span></p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">&nbsp;</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">Presentation/articles—I
+
+        posted an article every week except one (I believe), and the
+        following week I posted several.<span style="">&nbsp; </span>I
+        read a lot of other people’s articles and tried to comment with
+        more than “That was interesting.”<span style="">&nbsp; </span>I
+        tried to ask questions whenever I could.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">&nbsp;</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;">General
+        Participation—As with my other categories, I’ve shown
+        improvement in general participation.<span style="">&nbsp; </span>It
+        took me a couple of weeks to figure out the general forum—what
+        to post, how often, etc.<span style="">&nbsp; </span>Once I
+        started reading the chapters earlier and earlier in the week,
+        however, I found it was a great place to interact with the other
+        students.<span style="">&nbsp; </span>Classroom interaction is
+        difficult to replace in an online class, but the forum was
+        surprisingly helpful.<span style="">&nbsp; </span>I posted some
+        links I had found helpful, answered some questions, and posted
+        questions.<span style="">&nbsp; </span>Toward the end of the
+        quarter, I tried to be more creative with my questions so the
+        class would enjoy them as well as learning from them.</p>
+      <p class="MsoNormal" style="margin: 0in 0in 0pt;"><br>
+        Motivation/leadership—As evident from the other categories, I
+        have learned a lot from this class.<span style="">&nbsp; </span>My
+
+        motivation has steadily improved from the beginning of the
+        quarter (and I was excited to begin with).<span style="">&nbsp;
+        </span>Even my early posts were usually enthusiastic about my
+        discoveries, and they have progressed from there.<span style="">&nbsp;
+
+        </span>As far as leadership goes, I have done my best to post
+        things that make other students think.<span style="">&nbsp; </span>I
+        have tried to discuss topics with them when I comment, and to
+        prompt their discussions when I post my own entries.<span
+          style="">&nbsp; </span>This is what I would want from other
+        students in the class.<span style="">&nbsp; </span>The students
+        who posted like this are the ones I see as leaders.<span
+          style="">&nbsp; </span>They are the ones who help me learn,
+        who urge me to think more deeply about the topics we’re
+        covering.<span style="">&nbsp; </span>I feel that I have been
+        one of these students, one who tries to urge her fellow students
+        to enjoy the class and think at a more critical level.</p>
+      <h3 align="left">Another excellent grade eval</h3>
+      <p align="left">This student was a pleasure to have in class, no
+        doubt had a very positive influence on peers, and has clearly
+        discovered the secret to being happy in life--a passion for
+        learning and growing.</p>
+      <p>Grade Calculator: 2.9</p>
+      <div style="margin: 0in 0in 0pt;"> Throughout the quarter I have
+        tried my best to do well on every aspect and now it’s time to
+        see how I did and what grade would my effort earn. Isn’t it such
+        a great opportunity!</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>Exams</b> (midterm and
+        final: 2):&nbsp;Before taking the midterm, I thought I prepared
+        well for it, but the score 65% told me that I did not try hard
+        enough and I had to change my study habits.&nbsp;Knowing that
+        memorization does not work for this class, but I still used it
+        to prepare for the midterm.&nbsp;Since I learned a good lesson,
+        after taking the midterm, I invested more time into
+        understanding the principles and the qualitative concepts behind
+        them.&nbsp;I asked a lot of why’s questions while reading the
+        book and lecture notes in order to gain a deeper and
+        longer-lasting understanding of astronomy and eliminate
+        memorization.&nbsp;While studying for the final, I keep remind
+        myself: “Do not memorize, but internalize”.&nbsp;I have been
+        working so hard on reviewing for the final, but I’m afraid I
+        might leave out some subjects and these subjects are appeared on
+        the final exam’s questions. So, I gave myself a 2 for both the
+        final and the midterm sections.</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>Homework</b>:&nbsp;Although
+        weekly homework dues at the end of the week (Sunday), I usually
+        started doing it at the beginning of the week (Monday) and then
+        kept continuing each day until I completed it.&nbsp;I tried to
+        find the answers in the book as much as possible and when it was
+        necessary I referred to other resources (mostly
+        internet).&nbsp;Since I gave myself plenty of time to complete
+        the homework and I never procrastinated, my weekly homework was
+        submitted before or by the due date and averaged around
+        95%.&nbsp;Besides, when I saw someone post a question that I had
+        a good answer for, I wanted to take a chance to answer it, but I
+        was always one step behind my peers.&nbsp;However, I did
+        contribute my comments and homework-related questions in the
+        General Forum.&nbsp;Thus, I gave myself a 3 for the homework
+        section.</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>Journal</b>:&nbsp;Although
+        it said journals should not take more than 5 minutes per entry,
+        I enjoyed spending my time for at least an hour to “put a little
+        dressing on it”.&nbsp;Every week I wrote two in-depth journals
+        detailing my progress in the class, my feelings, things I have
+        learned and things I were having trouble with.&nbsp;Even though,
+        I had good effort, I think I could have done a little more on
+        identifying areas of strength and weakness and providing some
+        comments about the textbook.&nbsp;Thus, I gave myself a 2.5 for
+        journal section.</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>Stargazing</b>: At first, I
+        found it extremely difficult because I didn’t know what I was
+        looking at; I saw stars but couldn’t name them, but I didn’t
+        give up.&nbsp;I referred to textbook, articles, and some online
+        resources such as stardate.org, earthsky.org, and
+        skyandtelescope.com to help me identify objects in the
+        sky.&nbsp;I always tried to make each observation helpful and
+        interesting even in a cloudy sky by providing background
+        information, relevant links, names and history of stars.&nbsp;I
+        usually observed the sky at 2 (sometimes 3) different times to
+        come up with one report.&nbsp;Comparing to the first time of
+        stargazing, I am now able to name some stars and know where and
+        when to look for the Moon and planets such as Jupiter, Mercury,
+        Mars, and Saturn. &nbsp;Although I put some thought and effort
+        into stargazing and share two interesting observations each week
+        with the class, I’m not sure if my guesses made sense or not
+        and&nbsp;I was relied on those resources.&nbsp;Thus, I gave
+        myself a 2.8 for stargazing section.</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>Articles</b>:&nbsp;At the
+        beginning of the week, I submitted only one article and noticed
+        that there wasn’t any response.&nbsp;Then I thought I better
+        change the topic (but still science-related topic) and spend
+        more time to choose interesting topics.&nbsp;Started from the
+        second week to the eleventh week, I submitted two well-format
+        articles each week.&nbsp;I took time to think how to write a
+        “quick blurb” that is just long enough to whet the reader’s
+        appetite.&nbsp;Although it said articles should not take more
+        than 30-60 minutes per week, I usually spent about 2 hours on
+        choosing, reading and writing well-format articles and another 2
+        hours to read and respond to the articles that others
+        posted.&nbsp;It might seem incredible, but reading articles is
+        knowledgeable and I enjoy spending my time on it and after this
+        class, I will make it become my new habit. &nbsp;Since I posted
+        two articles each week (except for week 1) and most of my
+        articles received multiple responses, I think I did a good job
+        on this section.&nbsp;Besides, I always provided feedback to my
+        classmates in Article Forum telling that we are so grateful to
+        learn such interesting and helpful information from each other.
+        &nbsp;Thus, I gave myself a 3. &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>General participation</b>:
+        Throughout the quarter, I found General Forum so helpful because
+        it is where I can interact with and get help from my instructor
+        and classmates.&nbsp;It’s a helpful tool to help me succeed in
+        this class.&nbsp;So, I tried to participate as much as I could.
+        &nbsp;It took me a week to figure out how to get
+        involved.&nbsp;Since then, I started posting thought-provoking
+        discussion, insightful questions, and comments related to
+        reading and homework and responding to discussion questions,
+        including DQ’s by instructor.&nbsp;The number of participation
+        each week depended on how I understood the chapter, but usually
+        I did more than it was required.&nbsp;The reason was that I was
+        not only motivated to do a good work, but I would love to
+        motivate others to learn.&nbsp;I thought I did an excellent job
+        on this section, but when I sat down and evaluated my
+        participation, I realized that I didn’t frequently take stands
+        and express opinions and I communicated with some
+        cut-and-paste.&nbsp;Thus, I gave myself a 2.6 for this section.</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> <b>Leadership/Attitude</b>:
+        I’m a hard-working but quiet person.&nbsp;However, I tried to
+        overcome my shyness by participate on the discussion forum as
+        much as I can.&nbsp;I’m shy to speak up in class when I don’t
+        know what to say.&nbsp;Since this class is online and I have
+        time to prepare for what I want to say, I’m not shy to post my
+        comments, questions or answers in discussion forum.
+        &nbsp;&nbsp;Throughout the quarter I tried my best to learn and
+        to motivate and educate others. For article and participation
+        components I did more than required.&nbsp;Everything that I
+        posted I always made sure that it was helpful so others can be
+        beneficial.&nbsp;However, I don’t think I am one of the leaders
+        because I see some of my classmates are a lot better than
+        me.&nbsp;Thus, I gave myself a 2 for this section.</div>
+      <div style="margin: 0in 0in 0pt;"> &nbsp;</div>
+      <div style="margin: 0in 0in 0pt;"> Overall, when it came a chance
+        for me to sit down and look back to see what I did, I realized
+        that I didn’t do as well as I thought.&nbsp;There are still some
+        aspects needed to be improved.&nbsp;Thus, the final grade of
+        2.9, coming from the grade calculator, seems fair enough to pay
+        off my hard work throughout the quarter.&nbsp;This is my second
+        class giving me an opportunity to evaluate my own
+        grade.&nbsp;Thanks to this “nontraditional” grading scheme, I
+        was not too preoccupied with points, but was strongly encouraged
+        to become independent and self-motivated learner.&nbsp;Thus, my
+        learning and growth will be endless after the class is over and
+        I can’t tell how grateful I am to have such a wonderful
+        opportunity!&nbsp;Big thanks!</div>
+      <p align="left">&nbsp;</p>
+      <p align="left">&nbsp;</p>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+  xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <title>Grade Calculator for Physics</title>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+    <style>
+li p {margin-bottom:0px;}
+.auto-style1 {
+	margin-left: 80px;
+}
+</style>
+    <script language="JavaScript">
+
+function dosum()           
+{ 
+mt = parseFloat(document.calc.mt.value);
+fin = parseFloat(document.calc.fin.value);
+hw = parseFloat(document.calc.hw.value);
+pres = parseFloat(document.calc.pres.value);
+journal = parseFloat(document.calc.journal.value);
+partic = parseFloat(document.calc.partic.value);
+lab = parseFloat(document.calc.lab.value);
+mot = parseFloat(document.calc.mot.value)
+
+mt_wt = parseFloat(document.calc.mt_wt.value)
+fin_wt = parseFloat(document.calc.fin_wt.value);
+hw_wt = parseFloat(document.calc.hw_wt.value);
+pres_wt = parseFloat(document.calc.pres_wt.value);
+journal_wt = parseFloat(document.calc.journal_wt.value);
+partic_wt = parseFloat(document.calc.partic_wt.value);
+lab_wt = parseFloat(document.calc.lab_wt.value);
+mot_wt = parseFloat(document.calc.mot_wt.value)
+
+
+total = (mt*mt_wt + fin*fin_wt + hw*hw_wt + 
++ pres*pres_wt + journal*journal_wt + lab*lab_wt + partic*partic_wt)/100;
+
+active=partic+lab+pres
+//qualifies for bonus if participation components are at max
+//max participation components are necessary but not sufficient; mot has to be >=2
+
+bonus=.5
+if(active==9 && mot==3){bonus=1;}
+if(active>=7 && active<9){bonus=0.5;}
+if(active>=5.5 && active<7){bonus=.25;}
+if(active<5){bonus=0;}
+if(mot==3 && active<9){document.calc.mot.value=2;}
+if(active>=7 && mot<=1.5){bonus=.25*mot;}
+if(mot==0){bonus=0;}
+
+
+//if(bonus==1){alert("Great job!");}
+
+GPA = 2.5 + 2*(total-2.5) + bonus*mot_wt
+if(GPA>=4){GPA=4;}
+
+if(bonus==1){document.calc.comment.value="Outstanding participation!!!";}
+if(bonus==.5 && GPA>=2.7){document.calc.comment.value="Good participation!";} 
+if(bonus==.5 && GPA<2.7 && GPA>2){document.calc.comment.value="Decent participation but other areas may need some work."}
+if(bonus==.25){document.calc.comment.value="You could participate more.";}
+if(bonus==0 || partic<1.7 || lab<1.7 || pres<1.7 || mt<1.7 || fin<1.7){document.calc.comment.value="One or more areas has a serious weakness.";}
+//if(mot<=1){bonus=0;}
+
+if( journal>3 || hw>3 || lab>3 || pres>3 || partic>3 || mt>3 || fin>3 || mot>3){document.calc.comment.value="Values cannot be more than 3. Please try again." ;GPA="ERROR"}
+
+
+if(fin==0){document.calc.comment.value="Must take the final to pass the class.";GPA=0}
+
+
+document.calc.GPA.value = GPA
+document.calc.GPA.value = GPA.toFixed(1)
+document.calc.bonus.value=bonus*mot_wt
+}
+</script>
+    <meta content="MSHTML 6.00.2900.2802" name="GENERATOR">
+    <script language="JavaScript" fptype="dynamicoutline">
+<!--
+function dynOutline() {}
+//-->
+
+
+<script language="JavaScript1.2" fptype="dynamicoutline" for="document" event="onreadystatechange()">
+<!--
+initOutline()
+//-->
+</script>
+  </head>
+  <body language="Javascript1.2" onclick="dynOutline()">
+    <center>
+      <h1>&nbsp;</h1>
+      <h1><font size="5"><b>Grade Calculator</b></font></h1>
+      <form name="calc">
+        <table id="table1" width="591" cellpadding="4" border="2"
+          bgcolor="#99cccc">
+          <tbody>
+            <tr>
+              <td width="193">Midterm(s)</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="mt">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="20" name="mt_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Final</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="fin">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="25" name="fin_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Homework</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="hw">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="10" name="hw_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Lab/group activity</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="lab">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="15" name="lab_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Journal</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="journal">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="10" name="journal_wt"> %
+                of the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Presentation/articles</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="pres">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="15" name="pres_wt"> % of
+                the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Participation/forum</td>
+              <td width="415"><input maxlength="3" size="3" value="3"
+                  name="partic">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="5" name="partic_wt"> %
+                of the grade</td>
+            </tr>
+            <tr>
+              <td width="193">Motivation/leadership</td>
+              <td width="415"><input maxlength="3" size="3" value="2"
+                  name="mot">&nbsp;&nbsp;&nbsp;&nbsp; worth <input
+                  maxlength="3" size="3" value="0.5" name="mot_wt"> GP
+                units</td>
+            </tr>
+            <tr>
+              <td width="193"><input onclick="dosum()" value="Compute" name="button" type="button"></td>
+              <td width="415"><b>GPA: <input size="4" name="GPA"
+                    value="compute"></b></td>
+            </tr>
+            <tr>
+              <td width="193">Comment:</td>
+              <td width="415"><b> <input size="57" name="comment"
+                    value="Please enter some numbers and click on
+                    'compute'."></b></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <p align="left">***Note that grade calculator outputs a grade
+        based on a 4.0 scale, even though the input for each component
+        is on a 3.0 scale.</p>
+      <div style="text-align: left; margin-bottom: 20px;">
+        <h3> <a href="#faqs">FAQ's</a><br>
+          <a href="#rubric">Rubric</a><br>
+          <a href="#sample">Sample</a> </h3>
+        <div style="text-align: left;">
+          <!-- FAQ SECTION -->
+          <h3 id="faqs">FAQ's</h3>
+          <dl>
+            <dt><strong>Q: Why is each component scored on 3.0 scale
+                when the final grade is on 4.0 scale?</strong></dt>
+            <dd>A: A 3.0 scale was chosen to score each component
+              because it's relatively simple to use. Most people can
+              distinguish between excellent and poor. Excellent scores a
+              3 and poor scores a 1. When in doubt or if neither extreme
+              is appropriate, choose 2. The grade calculator will then
+              convert all these numbers into your final grade on 4.0
+              scale.</dd>
+            <br>
+            <dt><strong>Q: The grade eval does not seem to be related to
+                the course material, so it's hard for me to take it
+                seriously. What's the penalty for not submitting a grade
+                eval?</strong></dt>
+            <dd>A: The grade eval is your opportunity to take
+              responsibility for your successes and possible failures in
+              the class. In that sense, it is very much related to the
+              class. Not submitting the grade eval should be considered
+              equivalent to not taking an exam.</dd>
+            <br>
+            <dt><strong>Q: I'm very hard on myself and I know some
+                people will definitely inflate their grades. Wouldn't
+                that leave me at a relative disadvantage?</strong></dt>
+            <dd>A: Deliberate grade inflation is a form of academic
+              dishonesty and will not earn brownie points with the
+              instructor. On the other hand, those who demonstrate an
+              ability to be self-reflective will benefit by getting a
+              high mark on this particular assignment.</dd>
+            <br>
+            <dt><strong>Q: How often do we need to submit the grade
+                eval?</strong></dt>
+            <dd>A: Everyone will need to submit a grade eval at the end
+              of the course. Think of it as a portfolio of all your
+              work. In addition, students may wish to submit# some early
+              versions to get an idea of how they are doing in the
+              class. This way, students will better understand the
+              grading process and will be more likely to take
+              responsibility for their own education. Those who ask me
+              how they are doing will always get the same response:
+              Please submit a grade eval and I can let you know if it's
+              reasonable.</dd>
+          </dl>
+          <hr>
+          <!-- PHILOSOPHY -->
+          <h3>Philosophy</h3>
+          <p>As you probably know, assigning grades is a difficult
+            process that no teacher looks forward to. And although
+            grading is certainly not an exact science, we can still
+            strive to be as fair and as consistent as possible. To help
+            with the process and to make sure that you receive every
+            possible consideration, you will need to submit (in
+            WebAssign) an analysis of the grade you think you deserve
+            based on the criteria discussed in the syllabus. Please use
+            this calculator to estimate your grade or range of possible
+            grades. You may play around with the weights (<i>i.e.</i>,
+            percentage of total grade) to nudge your grade a bit, but
+            your estimate should always be based on rational arguments
+            rather than on wishful thinking. Keep in mind that to have
+            some standard and help you with objectivity, you will need
+            to compare yourself to the strongest students in the class.
+            As stated in WebAssign, your estimate can only help you,
+            never hurt you, especially if it demonstrates an ability to
+            be self-reflective and objective. A <a href="#sample">sample</a>
+            analysis is shown at the bottom.</p>
+          <!-- GRADE SCALE -->
+          <h3>Grade scale</h3>
+          <p>The grade calculator above should give you a grade which
+            corresponds roughly to the following scale:</p>
+          <ul>
+            <li><strong>4.0:</strong> Exceptional student, strong in
+              every aspect of the class.</li>
+            <li><strong>3.0:</strong> Pretty good student, strong in
+              most aspects of the class, with some weaknesses.</li>
+            <li><strong>2.0:</strong> Average student, weak in many
+              areas but has a reasonable grasp of the important ideas.</li>
+            <li><strong>1.0:</strong> Serious issues with effort and
+              motivation (or evidence thereof).</li>
+            <li><strong>0.0:</strong> Little or no effort, virtually no
+              motivation (or evidence thereof).</li>
+          </ul>
+          <!-- EXCELLENT GOOD POOR -->
+          <h3>Excellent-good-poor</h3>
+          <p>A reasonable estimate of your grade can be obtained using
+            the excellent-good-poor scale for each component, with
+            appropriate weighting factors. Excellent earns 3, good 2,
+            poor 1. Since there is a subjective component in this
+            approach, you'll need to use your judgment. The guidelines
+            below should help you come up with reasonable numbers. In
+            general, the subjective components that score higher are
+            those that demonstrate a strong effort, positive attitude,
+            and self-reflection.</p>
+          <!-- IMAGE POSTING -->
+          <div> <img src="hare&amp;turtle.jpg" alt="Hare and Turtle
+              Scenario Illustration" style="border: 0; display: block;
+              margin: 15px 0;" width="550" height="290"> </div>
+          <!-- SCENARIOS -->
+          <h3>Different scenarios with calculator</h3>
+          <h4>The lazy ace</h4>
+          <blockquote>
+            <p>Meg O'Hurts is a student who gets 100% on the exams and
+              homework but usually doesn't participate in discussions,
+              is not very active in lab, writes shallow journals, and
+              contributes little to the learning community. This student
+              will end up with a grade in the neighborhood of 2.6 or
+              less. So exams are not the whole story.</p>
+          </blockquote>
+          <h4>The hardworking plodder</h4>
+          <blockquote>
+            <p>Nysa Neezie is a student who gets about average on the
+              exams, struggles on the homework, but writes in-depth and
+              self-reflective journals, consistently asks questions in
+              class and engages in discussions, exhibits an enthusiasm
+              for learning. This student will earn a grade in the
+              neighborhood of 3.0 or better, which is not too shabby for
+              an average test taker.</p>
+          </blockquote>
+          <!-- RUBRIC SECTION -->
+          <h3 id="rubric">How to score the components (rubric)</h3>
+          <p><strong>Note:</strong> Failure to submit a <strong>self-evaluation
+
+
+
+              at the end of the course</strong> can drop both the
+            journal and motivation scores by 1 unit each. An excellent
+            end-of-course self-evaluation, with solid introspection and
+            a clear plan for improvement, can boost the overall grade.</p>
+        </div>
+        <div style="text-align: left !important; display: block
+          !important; width: 100%;">
+          <!-- MOTIVATION / LEADERSHIP / ATTITUDE -->
+          <p><strong>Motivation/Leadership/Attitude</strong></p>
+          <ul>
+            <li> <strong>3 -- excellent; top 10% of the class</strong>
+              <ul>
+                <li>clearly one of the leaders in the class</li>
+                <li>consistently does more than required</li>
+                <li>consistently positive attitude and lots of
+                  enthusiasm</li>
+                <li>completely self-motivated and consistently fuels
+                  controversial topics and discussions</li>
+                <li>strong drive to learn and to motivate and educate
+                  others</li>
+                <li>consistently helpful to peers (answering questions,
+                  making suggestions, etc.); excellent contribution to
+                  the learning community</li>
+                <li>consistently on time to class and proactive with
+                  assignments</li>
+                <li>highly introspective and honest grade eval submitted
+                  at the end of the course</li>
+                <li>generally applies to only a handful of students in
+                  any given class</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- good</strong>
+              <ul>
+                <li>does all that is required, but not much more</li>
+                <li>often participates in but usually does not initiate
+                  discussions</li>
+                <li>usually does not tackle challenging discussion
+                  questions</li>
+                <li>usually stays away from controversial or provocative
+                  topics</li>
+                <li>stays "invisible" for a big portion of the class;
+                  typically, the reserved observer</li>
+                <li>many hard-working but quiet people will fall into
+                  this category</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor</strong>
+              <ul>
+                <li>rarely goes beyond the bare minimum</li>
+                <li>typically indifferent, though might occasionally
+                  complain vaguely about difficulty of material</li>
+                <li>stays "invisible" for most of the class</li>
+                <li>no real passion to get involved or to contribute to
+                  the learning community</li>
+              </ul>
+            </li>
+            <li> <strong>0 -- grade eval NOT submitted (or extremely
+                shallow and/or inflated) at the end of the course</strong>
+            </li>
+          </ul>
+          <!-- HOMEWORK -->
+          <p><strong>HW</strong></p>
+          <ul>
+            <li> <em>Note that although WebAssign gives you a score,
+                that's not exactly the score I use in calculating your
+                final hw grade.</em> </li>
+            <li> <strong>3 -- motivated and helpful</strong>
+              <ul>
+                <li>got most of it done correctly</li>
+                <li>did not procrastinate (about 50% done within a few
+                  days after the topic is started)</li>
+                <li>completed most of the hw quizzes (accessible only
+                  when a score of 50% on the hw is achieved)</li>
+                <li>often contributed hw-related insight in class
+                  discussions</li>
+                <li>consistently helpful to others</li>
+                <li><em>Note: students who get 100% but
+                    consistently&nbsp; procrastinate will earn only 2</em></li>
+              </ul>
+            </li>
+            <li> <strong>2 -- average motivation</strong>
+              <ul>
+                <li>got most of it done correctly</li>
+                <li>significant procrastination (less than half done
+                  half-way into the topic)</li>
+                <li>missed more than one hw quiz</li>
+                <li>decent effort on the homework, but typically not
+                  very helpful to others</li>
+                <li>typically did not contribute hw-related insight in
+                  class</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor effort</strong>
+              <ul>
+                <li>got less than half done correctly</li>
+                <li>very serious procrastination (most of it done within
+                  a couple of days before deadline)</li>
+                <li>rarely helped others or contributed hw-related
+                  insights to class discussions</li>
+              </ul>
+            </li>
+          </ul>
+          <!-- EXAMS -->
+          <p><strong>Exams</strong></p>
+          <ul>
+            <li><strong>3 -- upper third of the class; </strong>scores
+              significantly above average (typically &gt;70%), clear
+              mastery of most of the material</li>
+            <li><strong>2 -- middle third of the class; </strong>scores
+              around average (typically 45-65%), decent though
+              incomplete mastery of the material</li>
+            <li><strong>1 -- bottom third of the class; </strong>scores
+              significantly below average (typically &lt;40%), serious
+              gaps in understanding</li>
+            <li> Note that students who are rarely able to answer (or
+              attempt to answer) questions in person (class, office,
+              etc.), or ask meaningful questions might lose 0.25-0.5 on
+              their final exam grade, depending on the severity of the
+              deficit. The reason for this is that students need to be
+              able to communicate orally, as well in writing. So think
+              of in-class participation as a low-stakes oral exam, in
+              addition to the contribution to the learning community. </li>
+          </ul>
+          <!-- LAB -->
+          <p><strong>Lab:</strong></p>
+          <ul>
+            <li> <strong>3 -- excellent effort</strong>
+              <ul>
+                <li>impressive creativity in lab and on write-ups</li>
+                <li>consistently eager to do more than required</li>
+                <li>excellent interaction with group members</li>
+                <li>always shows up on time</li>
+                <li>in-depth lab evaluations, with meaningful detail</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- decent effort</strong>
+              <ul>
+                <li>does what is required but nothing more</li>
+                <li>average interaction with group members</li>
+                <li>lab writeup ok but with some issues</li>
+                <li>lab evaluation sometimes vague</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor effort</strong>
+              <ul>
+                <li>at least one unexcused absence or missing lab
+                  write-up</li>
+                <li>consistently late to lab</li>
+                <li>poor attention to detail on lab writeup</li>
+                <li>consistently shallow evaluations ("Everybody was
+                  cool.")</li>
+              </ul>
+            </li>
+            <li> Note for Phy 139: There is no formal lab or writeup in
+              Physics 139, so the 'lab' component can represent any
+              group activities or just general participation and
+              leadership components. </li>
+          </ul>
+          <!-- JOURNALS -->
+          <p><strong>Journals:</strong></p>
+          <ul>
+            <li> <strong>3 -- excellent effort</strong>
+              <ul>
+                <li>submits entries at least twice per week</li>
+                <li> consistently good substance
+                  <ul>
+                    <li>in-depth analysis of progress in the class</li>
+                    <li>observations about school-related issues</li>
+                    <li>at least several meaningful sentences per entry</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li> <strong>2 -- decent effort</strong>
+              <ul>
+                <li>relatively consistent, but often submits entries no
+                  more than once per week</li>
+                <li>average depth of progress in the class</li>
+                <li>typically no more than 1-2 sentences</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor effort</strong>
+              <ul>
+                <li>inconsistent, with multiple gaps of a week or more</li>
+                <li>consistently shallow entries</li>
+                <li>rarely discusses class content</li>
+                <li>often one-liners, with little analysis</li>
+                <li> Examples of shallow entries include:
+                  <ul>
+                    <li>"Everything is cool. Nothing new to report."</li>
+                    <li>"The book sucks. I don't understand anything."</li>
+                    <li>"Had some pizza. It was great."</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!-- GENERAL PARTICIPATION -->
+          <p><strong>General participation:</strong></p>
+          <ul>
+            <li> <strong>3 -- excellent participation</strong>
+              <ul>
+                <li>consistently contributes intelligence to the
+                  learning community</li>
+                <li>consistently eager to respond to questions in class
+                  or discussion board</li>
+                <li>frequently helps with problem solving in class</li>
+                <li>frequently poses questions to clarify or extend
+                  material</li>
+                <li>frequently takes stands and expresses opinions about
+                  subject matter</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- decent participation</strong>
+              <ul>
+                <li>sometimes contributes intelligence to the learning
+                  community</li>
+                <li>sometimes responds to questions brought in class or
+                  discussion board</li>
+                <li>sometimes poses questions to clarify or extend
+                  material</li>
+                <li>sometimes takes stands and expresses opinions</li>
+                <li>some gaps in participation</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor participation</strong>
+              <ul>
+                <li>rarely contributes intelligence to the learning
+                  community</li>
+                <li>consistently poor effort answering questions in
+                  class ("Hmmm, I dunno...")</li>
+                <li>rarely works on sample problems in class</li>
+                <li>rarely responds to discussion questions</li>
+                <li>rarely poses questions to clarify or extend material</li>
+                <li>seems indifferent much of the time</li>
+                <li>often late or absent from class</li>
+              </ul>
+            </li>
+            <li> <em>*Note: Physically showing up to class without
+                actually speaking up does not constitute participation.</em>
+            </li>
+          </ul>
+          <!-- PRESENTATIONS -->
+          <p><strong>Presentation (might be optional, as announced in
+              class)</strong></p>
+          <ul>
+            <li> <strong>3 -- excellent</strong>
+              <ul>
+                <li>clear evidence of effort and time invested</li>
+                <li>went beyond class material</li>
+                <li>focused on important ideas, with little drag factor</li>
+              </ul>
+            </li>
+            <li> <strong>2 -- decent job, characterized by some or all
+                of the following:</strong>
+              <ul>
+                <li>mostly review of class material</li>
+                <li>some drag factor</li>
+                <li>some mumbling, some reliance on notes</li>
+              </ul>
+            </li>
+            <li> <strong>1 -- poor, characterized by some or all of the
+                following:</strong>
+              <ul>
+                <li>poor organization with no obvious big picture</li>
+                <li>excessive mumbling and poor eye contact, excessive
+                  reliance on notes</li>
+              </ul>
+            </li>
+            <li> <em>*When presentations are optional, they count as
+                extra credit and can raise the articles or participation
+                component by one unit. Students who wish to receive
+                extra credit for presentations need to submit them at
+                least 2 weeks before the last day of class.</em> </li>
+          </ul>
+          <!-- SCIENCE ARTICLES -->
+          <p><strong>Science articles</strong></p>
+          <ul>
+            <li><strong>3</strong> -- consistent submission of
+              well-formatted articles (see syllabus); interesting
+              topics, sometimes provocative and controversial;
+              insightful questions and answers; consistently meaningful
+              feedback to peers in Canvas; clear effort to educate and
+              learn from others</li>
+            <li><strong>2</strong> -- pretty good articles; missed a
+              week here and there; some feedback to peers; delivery
+              steady but not exciting</li>
+            <li><strong>1</strong> -- inconsistent delivery;
+              uninteresting articles; little or no feedback to peers;
+              obvious absence of enthusiasm</li>
+          </ul>
+        </div>
+        <h3 align="left">Bonus points</h3>
+        <p align="left">If you had a cosistently positive attitude, were
+          exceptionally helpful to others, and did exceptional work in
+          any one of the "subjective" components (journals, lab,
+          forum/participation), you may be rewarded with some bonus
+          points.</p>
+        <div style="text-align: left !important; display: block
+          !important; width: 100%; margin-top: 30px;">
+          <h3 id="sample">Sample self-evaluation</h3>
+          <p align="left">The key to a good self-evaluation is to be
+            more critical of oneself than of others. Making excuses,
+            rather than taking responsibility, tends to slow down the
+            learning process. Here are several sample evals...&nbsp;</p>
+          <h3 align="left"><br>
+            Poor eval</h3>
+          <p align="left">"I deserve an A because my attendance was good
+            and I tried really hard." This evaluation does not
+            specifically address grading criteria. It is simply an
+            emotional response, with little depth or evidence of
+            self-reflection, by a student who probably does very little
+            in class and is not aware of the problem.<br>
+            &nbsp;</p>
+          <h3 align="left">Good eval</h3>
+          <p align="left">My midterm and final scores I rated myself a 2
+            on both. I looked at the scores and broke them into thirds
+            and see my scores in the middle third in both. The first
+            exam seemed easy, it was at home and the material seemed
+            like a review. The midterm, I thought my score was about
+            what I had expected I would get. The final, I was hoping for
+            a higher score, a few of the problems I should have gotten,
+            I kept plugging the numbers in simple equations and it kept
+            telling me I was wrong. I guess my understanding wasn't as
+            good as it should have been. But in the end my scores were
+            what they were, definitely not perfection but I was still in
+            the middle section and therefore a score of 2.<br>
+            <br>
+            Homework, I scored a 3 as I generally worked through the
+            problems pretty much steadily and not waiting until the end.
+            I did well on all except the last homework set which seemed
+            like a lot of new material at the very end, but I just
+            didn't have enough time to get through it all. But I still
+            feel I earned a 3 on the homework.<br>
+            <br>
+            Lab: I scored it a 3 as all the reports were turned it and
+            were clear and easy to understand.<br>
+            <br>
+            Journal: I scored it a 3, I tried to submit every couple of
+            days and update my progress.<br>
+            <br>
+            Presentation: I scored it a 3 as I thought it went well and
+            after reading the reviews, I think it came across well. I
+            found it interesting as how many movie physics presentations
+            looked similar to ours.<br>
+            <br>
+            Participation/Forum: I scored it a 3. I was more active and
+            consistent in the forum this quarter than last.<br>
+            <br>
+            When I entered these numbers in the grade calculator, it
+            returns a 3.2.<br>
+            <br>
+            I would love to be sitting here asking for a 4.0, but my
+            exam scores do not reflect that. My exam scores show that I
+            do not have a perfect understanding of the material. It
+            seems like it takes me a little while to absorb the physics,
+            some time to think about it and some time to actually see
+            how to apply it. Meanwhile the course keeps moving along.
+            The course actually doesn't seem to move too fast, however
+            it seems like it is me who is a little behind. I think I
+            need to try to read ahead in the book to get ahead a week or
+            two so that when it is discussed in the class I am ready for
+            it. Beyond my exam scores of a "2" I feel I have went beyond
+            the average expectations in the other areas.<br>
+            <br>
+            In general, I feel that I have contributed to the class and
+            have made a positive impact on my classmates.<br>
+            <br>
+            I have worked with others who have needed help. I have been
+            active in the forum, articles, etc. I have talked with other
+            students who may not be seeing the same things that I am
+            seeing because of our age differences and have tried to let
+            them see some things from a different perspective. I have
+            tried to relate a lot of our concepts to real life
+            applications and shown others how things that we are
+            studying can be used in the real world.<br>
+            <br>
+            Last quarter I received a 3.5. I thought that was fair. This
+            quarter I feel I have actually contributed more to the class
+            than last through participation but my exam scores are down
+            to a 2 instead of a 3 last quarter. Even though the grade
+            calculator indicates a 3.2, I feel I deserve a 3.5 +/-. The
+            increase in participation and overall contribution to the
+            class balances out the somewhat mediocre exam scores. I am
+            not content with my exam scores and am looking for
+            improvement next quarter. I feel I am a strong student but
+            just not perfect in all of the physics yet. Thanks for your
+            consideration.</p>
+          <h3 align="left">Another good eval</h3>
+          <p align="left">***This eval demonstrates excellent
+            self-reflection and a very good attitude.***</p>
+          <p align="left">Here is how I rated myself on the grade
+            calculator:<br>
+            <br>
+            Midterms 3<br>
+            Final 3<br>
+            Homework 2<br>
+            Lab 3<br>
+            Journal 3<br>
+            Participation/Articles 2<br>
+            Participation/Forum 3<br>
+            Motivation/Leadership 2<br>
+            <br>
+            Which totals up to a 3.2<br>
+            <br>
+            Midterms<br>
+            The first test was very easy because it was mostly review
+            from Physics 100, and plus it was in the comfort of my home.
+            On test 2 the only thing that I did not have down was
+            Energy. I knew pretty much most of the material except I was
+            struggling a little on energy.<br>
+            <br>
+            Final<br>
+            I spent the last few weeks of the quarter studying, and it
+            reflected on the final. I got a very good grade. I was
+            worried a little that I would not do as well on the final,
+            but thankfully most of the problems on it were bread and
+            butter problems.<br>
+            <br>
+            Homework<br>
+            My homework was not perfect. Not only did I not complete it
+            100%, but sadly I procrastinated. I did try very hard to
+            learn what was on it, especially after I did so bad on
+            energy on the midterm. I participated in many study groups
+            and asked for help to learn the homework.<br>
+            <br>
+            Lab<br>
+            The labs were really fun. I was in a good group, which was
+            very helpful in getting good data and making a good lab
+            report. I participated a lot in the gathering the data, as
+            well as doing the lab report. I also learned from Joe how to
+            write an elegant lab report in Word 07. From now on my lab
+            reports will look much better than they used to.<br>
+            <br>
+            Journal<br>
+            I tried to be consistent on writing good journals. The
+            journals showed my progress and what I was doing in that
+            period of time.<br>
+            <br>
+            Participation/Articles<br>
+            I did pretty bad on the article part this quarter. I did
+            read the articles, but for some reason i can't find any good
+            articles write for myself, or maybe i just wasn't looking
+            hard enough. My goal for next quarter is to have a perfect
+            score on articles.<br>
+            <br>
+            Participation/Forum<br>
+            I participated in the forum, worked on lab on the forum, and
+            probably used it more than last quarter.<br>
+            <br>
+            I worked a lot on physics in study groups, did homework
+            together with other students from the class, and tried to
+            help them out on some problems just like they were helping
+            me on problems that i was struggling on. I've had some
+            people come to me in the tutoring center, and we were trying
+            to figure out some problems there. I've had a group from our
+            class come and I helped them with their presentation a
+            little, gave them some suggestions. It's true that you learn
+            95% of what you teach, and thanks to that I learned a lot
+            from working in the tutoring center.<br>
+            <br>
+            I admit that I did worse this quarter than in Physics 100,
+            and I don't have a very good excuse for that, but I really
+            hope to get a 3.0 or higher from this class. Even though I
+            didn't participate as much as in Physics 100, I did learn
+            most of the material. And if I get at least a 3.0, I will be
+            able to tutor Physics 201 and learn what I tutor. That will
+            help me reinforce what i learned in this class just like it
+            helped me learn the basics from 100.<br>
+            <br>
+            I will work harder next quarter, and continue to work on my
+            procrastination/slacking, articles, and participation. So
+            please have some more patience with me while i try to
+            improve. Maybe you can help me be motivated somehow.</p>
+          <h3 align="left">Another good one</h3>
+          <p align="left">Participation - I feel my participation was a
+            little better than last quarter, which means I'm moving up a
+            bit. I participated in labs and outside class with other
+            members of the class pretty well though and found that my
+            efforts were pretty good.<br>
+            <br>
+            Homework - I did pretty decent on my homework, but i found
+            toward the end of the quarter I got that "senioritis" since
+            this was my last quarter at highline. I'm not gonna lie, I
+            still plug in those zero's but I found that with those, it
+            does help figure out those problems that I probably would
+            have been stuck on for a longer amount of time. I still had
+            the problem of procrastinating, but it was a busy quarter
+            with writing and math...writing being my most dreadful
+            class.<br>
+            <br>
+            Exams - I put forth a good effort toward the exams, my goal
+            again was to get above the 50% mark on both, but I couldn't
+            do so on the final, which I was kinda bummed about. I
+            succeeded on the mid term but couldn't seem to pull it
+            through in the end. I probably would have gotten to my goal
+            if I would have been paying attention to your hints before
+            the test, rather than trying to get my computer to work, but
+            that's a different story.<br>
+            <br>
+            Labs -This quarter it seemed like the labs were a little bit
+            easier than they were in the past. We had fun doing them and
+            think it always helps with getting to be friends with others
+            in the class. Everyone seemed to have fun with the labs and
+            I feel my efforts were just as well as everyone else's.<br>
+            <br>
+            Group Presentation - This as a whole I don't feel was that
+            great of a presentation, missing some factors. But as an
+            individual I was assigned the history and feel that I did
+            pretty well on the presentation part of it.<br>
+            <br>
+            Forum - I wasn't too active on the forum, I looked at it
+            trying to find places to post, but seemed to struggle just
+            like the other quarters, guess I'm just not physics minded,
+            and don't have some of the same knowledge of the rest of the
+            class.<br>
+            <br>
+            OVERALL<br>
+            <br>
+            This quarter I did put a good effort to learning the
+            material that was taught, and did my best to help others out
+            with things I was a little bit better off than before. I was
+            in the tutoring center very often, getting physics done with
+            classmates and even meeting outside of school to get some
+            things cleared away. All and all the effort was there,
+            although, I didn't do quite as well as I wanted to, I feel I
+            was a good addition to the class and a good person to have
+            around. I received a 3.0 last quarter and feel I just barely
+            topped that this quarter, I would be happy with a grade like
+            a 3.3 or something close to it, although my slacking showed
+            toward the end of the quarter. </p>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>

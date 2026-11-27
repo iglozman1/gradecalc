@@ -1,0 +1,1059 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Grade Calculator for Physical Science</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<style>
+li p {margin-bottom:0px;}
+.style1 {
+	text-align: left;
+}
+</style>
+<SCRIPT language=JavaScript>
+
+function dosum()           
+{ 
+mt = parseFloat(document.calc.mt.value);
+fin = parseFloat(document.calc.fin.value);
+hw = parseFloat(document.calc.hw.value);
+pres = parseFloat(document.calc.pres.value);
+journal = parseFloat(document.calc.journal.value);
+partic = parseFloat(document.calc.partic.value);
+stargazing = parseFloat(document.calc.stargazing.value);
+mot = parseFloat(document.calc.mot.value)
+
+mt_wt = parseFloat(document.calc.mt_wt.value)
+fin_wt = parseFloat(document.calc.fin_wt.value);
+hw_wt = parseFloat(document.calc.hw_wt.value);
+pres_wt = parseFloat(document.calc.pres_wt.value);
+journal_wt = parseFloat(document.calc.journal_wt.value);
+partic_wt = parseFloat(document.calc.partic_wt.value);
+stargazing_wt = parseFloat(document.calc.stargazing_wt.value);
+mot_wt = parseFloat(document.calc.mot_wt.value)
+
+
+total = (mt*mt_wt + fin*fin_wt + hw*hw_wt + 
++ pres*pres_wt + journal*journal_wt + stargazing*stargazing_wt + partic*partic_wt)/100;
+
+active=partic+stargazing+pres
+//qualifies for bonus if participation components are at max
+//max participation components are necessary but not sufficient; mot has to be >=2
+
+bonus=.5
+if(active==9 && mot==3){bonus=1;}
+if(active>=7 && active<9){bonus=0.5;}
+if(active>=5.5 && active<7){bonus=.25;}
+if(active<5){bonus=0;}
+if(mot==3 && active<9){document.calc.mot.value=2;}
+if(active>=7 && mot<=1.5){bonus=.25*mot;}
+if(mot==0){bonus=0;}
+
+//if(bonus==1){alert("Great job!");}
+
+GPA = 2.5 + 2*(total-2.5) + bonus*mot_wt
+if(GPA>=4){GPA=4;}
+
+if(bonus==1){document.calc.comment.value="Outstanding participation!!!";}
+if(bonus==.5 && GPA>=2.7){document.calc.comment.value="Good participation!";} 
+if(bonus==.5 && GPA<2.7 && GPA>2){document.calc.comment.value="Decent participation but other areas may need some work."}
+if(bonus==.25){document.calc.comment.value="You could participate more.";}
+if(bonus==0 || partic<1.7 || stargazing<1.7 || pres<1.7 || mt<1.7 || fin<1.7){document.calc.comment.value="One or more areas has a serious weakness.";}
+
+if(journal>3 || hw>3 || stargazing>3 || pres>3 || partic>3 || mt>3 || fin>3){document.calc.comment.value="Values cannot be more than 3. Please try again.";}
+if(fin==0){document.calc.comment.value="Must take the final to pass the class.";GPA=0}
+
+
+//if(mot<=1){bonus=0;}
+
+
+document.calc.GPA.value = GPA
+document.calc.GPA.value = GPA.toFixed(1)
+document.calc.bonus.value=bonus*mot_wt
+}
+</SCRIPT>
+
+
+
+<META content="Microsoft FrontPage 12.0" name=GENERATOR>
+<script language="JavaScript" fptype="dynamicoutline">
+<!--
+function dynOutline() {}
+//-->
+</script>
+
+<script language="JavaScript1.2" fptype="dynamicoutline" for="document" event="onreadystatechange()">
+<!--
+initOutline()
+//-->
+</script>
+</HEAD>
+<BODY onclick=dynOutline() language="Javascript1.2">
+<CENTER>
+
+<H1><FONT size=5><B>Grade Calculator</B></FONT></H1>
+<FORM name=calc>
+<TABLE cellPadding=4 width=591 bgColor=#99cccc border=2>
+  <TBODY>
+  <TR>
+    <TD width=193>Midterm</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=2 name=mt>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+	<INPUT 
+      maxLength=3 size=3 value=15 name=mt_wt> % of the grade</TD></TR>
+
+  <TR>
+    <TD width=193>Final</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=2 name=fin>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+      <INPUT maxLength=3 size=3 value=15 name=fin_wt> % of the grade</TD></TR>
+  <TR>
+    <TD width=193>Homework</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=2 name=hw>&nbsp;&nbsp;&nbsp;&nbsp; worth <INPUT 
+      maxLength=3 size=3 value=10 name=hw_wt> % of the grade</TD></TR>
+
+  <tr>
+    <TD width=193>Journal</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=3 name=journal>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+      <INPUT maxLength=3 size=3 value=10 name=journal_wt> % of the grade</TD>
+	</tr>
+
+  <TR>
+    <TD width=193>Science showcase</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=3 name=stargazing>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+	<INPUT 
+      maxLength=3 size=3 value=15 name=stargazing_wt> % of the grade</TD></TR>
+  <TR>
+    <TD width=193>Presentation/articles</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=3 name=pres>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+      <INPUT maxLength=3 size=3 value=20 name=pres_wt> % of the grade</TD></TR>
+
+  <tr>
+    <TD width=193>General participation</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=3 name=partic>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+      <INPUT maxLength=3 size=3 value=15 name=partic_wt> % of the grade</TD>
+	</tr>
+  <TR>
+    <TD width=193>Motivation/leadership</TD>
+    <TD width=415><INPUT maxLength=3 size=3 value=2 name=mot>&nbsp;&nbsp;&nbsp;&nbsp; worth 
+      <INPUT maxLength=3 size=3 value=0.5 name=mot_wt> GP units</TD></TR>
+
+  <tr>
+    <TD width=193><INPUT onclick=dosum() type=button value=Compute name=button></TD>
+    <TD width=415><B>GPA: <INPUT size=4 name=GPA value="compute"></B></TD>
+	</tr>
+
+  <TR>
+    <TD width=193>Comment:</TD>
+    <TD width=415><B> 
+	<INPUT size=57 name=comment value="Please enter some numbers and click on 'compute'."></B></TD></TR>
+
+  </TBODY></TABLE></FORM>
+<FORM name=calc0>
+	<div class="style1">
+		***Note that grade calculator outputs a grade based on a 4.0 
+scale, even though the input for each component is on a 3.0 scale.</div>
+</FORM>
+<CENTER>
+
+<h3 align=left><a href="#faqs">FAQ's</a><br><a href="#rubric">Rubric</a><br>
+<a href="#sample">Sample evals</a></h3>
+
+<h3 align=left>&nbsp;</h3>
+<h3 align=left><a name="faqs"></a>FAQ's</h3>
+<P align=left>Q: Why is each component scored on 3.0 scale when the final grade 
+is on 4.0 scale?<br>
+A: A 3.0 scale was chosen to score each component because it's relatively simple 
+to use. Most people can distinguish between excellent and poor. Excellent scores 
+a 3 and poor scores a 1. When in doubt or if neither extreme is appropriate, 
+choose 2. The grade calculator will then convert all these numbers into your 
+final grade on 4.0 scale.</P>
+<P align=left>Q: The grade eval does not seem to be related to the course 
+material, so it's hard for me to take it seriously. What's the penalty for not 
+submitting a grade eval?<br>
+A: The grade eval is your opportunity to take responsibility for your successes 
+and possible failures in the class. In that sense, it is very much related to 
+the class. Not submitting the grade eval should be considered equivalent to not 
+taking an exam.</P>
+<P align=left>Q: I'm very hard on myself and I know some people will definitely 
+inflate their grades. Wouldn't that leave me at a relative disadvantage? <br>
+A: Deliberate grade inflation is a form of academic dishonesty and will not earn 
+brownie points with the instructor. On the other hand, those who demonstrate an 
+ability to be self-reflective will benefit by getting a high mark on this 
+particular assignment.</P>
+<P align=left>Q: How often do we need to submit the grade eval?<br>
+A: Everyone will need to submit a grade eval at the end of the course. Think of 
+it as a portfolio of all your work. In addition, students may wish to submit 
+some early versions to get an idea of how they are doing in the class. This way, 
+students will better understand the grading process and will be more likely to 
+take responsibility for their own education. Those who ask me how they are doing 
+will always get the same response: Please submit a grade eval and I can let you 
+know if it's reasonable. </P>
+</CENTER>
+<H3 align=left>Philosophy</H3>
+<P align=left>As you probably know, assigning grades is a difficult process that 
+no teacher looks forward to. And although grading is certainly not an exact 
+science, we can still strive to be as fair and as consistent as possible. To 
+help with the process and to make sure that you receive every possible 
+consideration, you will need to submit (in Canvas) an analysis of the grade 
+you think you deserve based on the criteria discussed in the syllabus. Please 
+use this calculator to estimate your grade or range of possible grades. You may 
+play around with the weights (<i>i.e.</i>, percentages of total grade) to nudge 
+your grade a bit, but your estimate should always be based on rational arguments 
+rather than on wishful thinking. Keep in mind that to have some standard and 
+help you with objectivity, you will need to compare yourself to the strongest 
+students in the class. Your estimate can only help you, never hurt you, especially if it 
+demonstrates an ability to be self-reflective and objective. A
+<a href="http://flightline.highline.edu/iglozman/classes/gradecalc_ast.htm#sample">sample</a> 
+analysis is provided below.</P>
+<h3 align=left>Grade scale</h3>
+<p align=left>The grade calculator above should give you a grade which 
+corresponds roughly to the following GPA scale:</p>
+<ul>
+	<li>
+	<P align=left>4.0:&nbsp; Exceptional student</P>
+<ul>
+	<li>
+	<P align=left>strong in every aspect of the class</P></li>
+	<li>
+	<P align=left>strong contributor to learning community</P></li>
+	<li>
+	<P align=left>passionate about learning</P></li>
+	<li>
+	<P align=left>rarely/never complains about things being too hard</P></li>
+</ul>
+	</li>
+	<li>
+
+	<P align=left>3.0:&nbsp; Pretty good student</P>
+<ul>
+	<li>
+	<P align=left>strong in most aspects of the 
+	class, with some weaknesses</P></li>
+	<li>
+	<P align=left>average contributor to learning community</P></li>
+	<li>
+	<P align=left>credit for the class is probably more important than the 
+	learning process</P></li>
+</ul>
+	</li>
+	<li>
+	<P align=left>2.0:&nbsp; Average student</P>
+<ul>
+	<li>
+	<P align=left>weak in many areas but has a 
+	reasonable grasp of the important ideas</P></li>
+	<li>
+	<P align=left>poor contributor to learning community</P></li>
+</ul>
+	</li>
+	<li>
+	<P align=left>1.0:&nbsp; Barely-passing student</P>
+<ul>
+	<li>
+	<P align=left>Serious issues with effort and motivation (or 
+	evidence thereof)</P></li>
+</ul>
+	</li>
+
+	<li>
+	<P align=left>0.0:&nbsp; Little or no effort, virtually no motivation (or 
+	evidence thereof)</P></li>
+</ul>
+<h3 align=left>Excellent-good-poor</h3>
+<P align=left>A reasonable estimate of your grade can be obtained using the 
+excellent-good-poor scale for each component, with appropriate weighting 
+factors. Excellent earns 3, good 2, poor 1. Since there is a subjective component 
+in this approach, you'll 
+need to use your judgment. The guidelines below should help you come up with 
+reasonable numbers. In general, the subjective components that score higher are 
+those that demonstrate a strong effort, positive attitude, and self-reflection.</P>
+
+<H3 align=left>Different scenarios with calculator<img border="0" src="hare&turtle.jpg" width="550" height="290"></H3>
+<UL>
+  <LI>
+  <H3 align=left>The lazy ace</H3></LI></UL>
+<BLOCKQUOTE>
+  <P align=left>Meg O'Hurts is a student who gets 100% on the exams and homework but usually doesn't 
+	participate in discussions, writes 
+	shallow journals, and contributes little to the learning community. This student will 
+	end up with a grade in the neighborhood of 2.6 or less. So exams are not the whole story.</P></BLOCKQUOTE>
+<UL>
+  <LI>
+  <H3 align=left>The hardworking plodder</H3></LI></UL>
+
+<BLOCKQUOTE>
+  <P align=left>Nysa Neezie is a student who gets about average on the exams, 
+	struggles on the homework, but writes in-dept and self-reflective journals, 
+	consistently asks questions in class and engages in discussions, exhibits an 
+	enthusiasm for learning. This student will earn a grade in the neighborhood of 3.0 
+	or better, which is not too shabby for an average 
+	test taker.</P></BLOCKQUOTE>
+<H3 align=left><a name="rubric"></a>How to score the components (Rubric)</H3>
+<P align=left><b>Leadership/Attitude/Academic Maturity</b></P>
+<ul>
+	<LI>
+	<P align=left>3 -- excellent; top 10% of the class</P>
+<ul>
+	<li>
+	<P align=left>clearly one of the leaders in the class</P>
+	</li>
+	<li>
+	<P align=left>one of the first to post introduction (in the Introductions 
+	forum)</P></li>
+	<li>
+	<P align=left>consistently does more than the required minimum (in the to-do 
+	list)</P></li>
+	<li>
+	<P align=left>consistently positive attitude and lots of enthusiasm; does 
+    not whine</P></li>
+	<li>
+	<P align=left>completely self-motivated and consistently fuels discussions, 
+	whether controversial or not</P></li>
+	<li>
+	<P align=left>strong drive to learn and to motivate and educate others</P>
+	</li>
+	<li>
+	<P align=left>consistently helpful to peers (answering questions, making 
+    suggestions, etc.); excellent contributor to the learning community</P>
+	</li>
+	<li>
+	<P align=left>highly introspective and honest grade eval submitted at the 
+	end of the course (similar to the examples below)</P></li>
+	<li>
+	<P align=left>generally applies to only a handful 
+	of students in any given class</P></li>
+
+</ul>
+	<LI>
+	<P align=left>2 -- good</P>
+<ul>
+	<li>
+	<P align=left>does all that is required, but not much more</P></li>
+	<li>
+	<P align=left>often participates in but usually does not initiate 
+	discussions</P></li>
+	<li>
+	<P align=left>usually does not tackle challenging discussion questions</P></li>
+	<li>
+	<P align=left>usually stays away from controversial or provocative topics</P>
+	</li>
+	<li>
+	<P align=left>stays &quot;invisible&quot; for a big portion of the class; typically, the 
+	reserved observer</P></li>
+	<li>
+	<P align=left>most hard-working but quiet people will fall into this 
+	category</P></li>
+
+</ul>
+	<LI>
+	<P align=left>1 -- poor</P>
+<ul>
+	<li>
+	<P align=left>rarely goes beyond the bare minimum and often does not even do 
+	that</P>
+	</li>
+	<li>
+	<P align=left>occasionally whines about points or difficulty of material 
+	without actually asking specific questions</P></li>
+	<li>
+	<P align=left>stays &quot;invisible&quot; for most of the class, 
+	particularly in general discussion</P></li>
+	<li>
+	<P align=left>typically indifferent, with no real passion to get involved or to contribute to the learning 
+	community</P>
+	</li>
+	<li>
+	<P align=left>shallow and/or excessively inflated grade eval submitted at 
+	the end of the course</P>
+	</li>
+	<li>
+	<P align=left>slackers and procrastinators generally fall into this category</P>
+	</li>
+
+</ul>
+	</LI>
+
+	<li>
+	<P align=left>0 -- grade eval NOT submitted at the end of the course</P>
+	</li>
+
+</ul>
+<P align=left><b>HW</b></P>
+<ul>
+	<li>
+
+	<P align=left>Note that the score you receive on your hw in Canvas is for 
+	feedback only. It is not used to calculate your hw grade in the end.</P></li>
+	<LI>
+	<P align=left>3 -- excellent effort </P>
+	<ul>
+		<LI>
+		<P align=left>consistently scores 50% or better</P>
+		<LI>
+		<P align=left>hw-related journals and 
+	consistent contribution (e.g., questions, answers, etc.) to class discussions</P>
+		<LI>
+		<P align=left>does not 
+	whine about difficulty</P>
+	</ul>
+	<LI>
+	<P align=left>2 -- average 
+	effort</P>
+	<ul>
+		<LI>
+		<P align=left>some procrastination</P>
+		<LI>
+		<P align=left>inconsistent contribution of hw-related insight in 
+	class</P>
+		<LI>
+		<P align=left>some hw-related observations in the journals</P>
+	</ul>
+	<LI>
+	<P align=left>1 -- poor effort</P>
+	<ul>
+		<LI>
+		<P align=left>consistently less than 50% and/or 3 or more missed 
+	assignments</P>
+		</LI>
+		<LI>
+		<P align=left>often procrastinates and/or whines about difficulty</P>
+		</LI>
+		<LI>
+		<P align=left>rarely contributes hw-related 
+	insights to class discussions</P>
+		</LI>
+		<LI>
+		<P align=left>journals usually not related to class content</P>
+		</LI>
+		<LI>
+		<P align=left>virtually no effort on DQ's throughout the course</P>
+		</LI>
+	</ul>
+	</LI>
+	<LI>
+	<P align=left>subtract 0.5 for consistently poor effort on instructor's DQ's 
+	(discussion questions/prompts)</P>
+	</LI>
+
+</ul>
+<P align=left><b>Exams</b></P>
+<ul>
+	<LI>
+	<P align=left>3 -- upper third of the class</P>
+<ul>
+	<li>
+	<P align=left>scores significantly above average</P></li>
+	<li>
+	<P align=left>clear mastery of most of the 
+	material</P>
+	</li>
+	<li>
+	<P align=left>consistently solid effort on DQ's (discussion questions posted 
+	by instructor)</P></li>
+
+</ul>
+	<LI>
+	<P align=left>2 -- middle third of the class</P>
+<ul>
+	<li>
+	<P align=left>scores around average</P></li>
+	<li>
+	<P align=left>decent though incomplete 
+	mastery of the material</P>
+	</li>
+
+</ul>
+	<LI>
+	<P align=left>1 -- bottom third of the class</P>
+<ul>
+	<li>
+	<P align=left>scores significantly below average</P></li>
+	<li>
+	<P align=left>serious gaps in understanding</P>
+	</li>
+
+</ul>
+	</LI>
+
+	<li>
+	<P align=left>&nbsp;*Note: A substantive grade eval (similar to the examples 
+	below) 
+	submitted at the end of the course can effectively raise the rubric score for the exams by as much as 1 unit. A bad one (or no eval) can have the opposite 
+	effect.</P>
+	</li>
+
+</ul>
+<P align=left><b>Science showcase:</b></P>
+<UL>
+  <LI>
+  <P align=left>3 -- consistently insightful and educational</P>
+<UL>
+  <li>
+	<P align=left>showcase often include background information, historical 
+	perspective, practical application, relevant links, etc.</P>
+	</li>
+	<li>
+	<P align=left>clearly relates to the current topic; not simply a random 
+	article</P>
+	</li>
+	<li>
+	<P align=left>demonstrates passion and clearly captures the audience</P>
+	</li>
+	<li>
+	<P align=left>consistently responsive to peers</P></li>
+	<li>
+	<P align=left>demonstrates excellent research</P></li>
+	</UL>
+  <LI>
+  <P align=left>2 -- average consistency and/or insight</P>
+<UL>
+  <li>
+	<P align=left>somewhat educational, but clearly not at the top of the class</P></li>
+	<li>
+	<P align=left>some interesting observations, but usually with no passion</P>
+	</li>
+	<li>
+	<P align=left>typically does what's required, but no more</P></li>
+	</UL>
+  <LI>
+  <P align=left>1 -- consistently shallow</P>
+<UL>
+  <li>
+	<P align=left>very few substantive offerings</P></li>
+	<li>
+	<P align=left>very little effort to educate others</P></li>
+	<li>
+	<P align=left>examples of shallow 
+	snacks include:</P>
+<UL>
+  <li>
+	<P align=left>&quot;Those hybrid cars are pretty cool.&quot; with no effort to 
+	explain why or offer insight</P></li>
+	<li>
+	<P align=left>&quot;Isaac Newton rocks!&quot; with no effort to explain why</P></li>
+	<li>
+	<P align=left>&quot;Check out this beautiful picture!&quot; with no explanation as to 
+	why the picture should be considered remarkable</P></li>
+	</UL>
+	</li>
+	</UL>
+
+  </LI></UL>
+<P align=left><B>Journals:</B></P>
+<UL>
+  <LI>
+  <P align=left>3 -- consistency and substance</P>
+  <UL>
+	  <LI>
+	  <P align=left>&nbsp;regular analysis of progress/struggles in class</P>
+	  <LI>
+	  <P align=left>consistently discusses specific things learned</P>
+	  <LI>
+	  <P align=left>not timid about offering suggestions</P>
+	  <LI>
+	  <P align=left>frequently references activity in the forums</P>
+  </UL>
+  <LI>
+  <P align=left>2 -- average depth and content analysis</P>
+  <UL>
+	  <LI>
+	  <P align=left>typically no more than a sentence or two</P>
+	  <LI>
+	  <P align=left>sometimes discusses progress in class or specific issues 
+	  with content</P>
+  </UL>
+	<li>
+	<P align=left>1 --&nbsp;consistently shallow and/or inconsistent</P>
+	<UL>
+		<li>
+		<P align=left>almost never discusses class content</P>
+		</li>
+		<li>
+		<P align=left>Examples of 
+	shallow entries include:</P>
+		<UL>
+			<li>
+			<P align=left>&quot;Everything is cool. Nothing new to report.&quot;</P>
+			</li>
+			<li>
+			<P align=left>&quot;The book sucks. I don't understand anything.&quot;</P>
+			</li>
+			<li>
+			<P align=left>&quot;Had some pizza. It was great.&quot;</P>
+			</li>
+		</UL>
+		</li>
+	</UL>
+	</li>
+  </UL>
+<P align=left><b>General participation:</b></P>
+<UL>
+  <LI>
+  <P align=left>3 -- excellent participation</P>
+<UL>
+	<li>
+	<P align=left>consistently contributes intelligence to the learning 
+	community</P>
+	</li>
+	<li>
+	<P align=left>more proactive than reactive</P>
+	</li>
+	<li>
+	<P align=left>consistently helpful/responsive to peers</P>
+	</li>
+	<li>
+	<P align=left>always follows up in discussions (not simply one post at a 
+	time)</P></li>
+	<li>
+	<P align=left>does not disappear for extended periods of time</P>
+	</li>
+  <li>
+	<P align=left>frequently initiates discussions and generally follows up</P></li>
+	<li>
+	<P align=left>frequently responds to discussion topics, including DQ's by 
+    instructor</P></li>
+	<li>
+	<P align=left>frequently poses questions to 
+	clarify or extend material</P></li>
+	<li>
+	<P align=left>frequently takes stands and expresses opinions</P></li>
+	<li>
+	<P align=left>communicates without excessive cut-and-paste</P></li>
+	</UL>
+	<li>
+	<P align=left>2 -- decent participation</P>
+<UL>
+  <li>
+	<P align=left>sometimes contributes intelligence to the learning community</P>
+	</li>
+	<li>
+	<P align=left>more reactive than proactive</P>
+	</li>
+	<li>
+	<P align=left>often, but not always, follows up in discussions</P></li>
+  <li>
+	<P align=left>sometimes responds to discussion 
+	questions; sometimes initiates</P></li>
+	<li>
+	<P align=left>sometimes poses questions to 
+	clarify or extend material</P></li>
+	<li>
+	<P align=left>sometimes takes stands and 
+	expresses opinions</P></li>
+	<li>
+	<P align=left>some gaps in participation</P></li>
+	</UL></li>
+	<li>
+	<P align=left>1 -- poor participation</P>
+<UL>
+  <li>
+	<P align=left>rarely contributes intelligence to the learning community</P>
+	</li>
+	<li>
+	<P align=left>posts are consistently shallow or filled with excessive 
+	cut-and-paste</P>
+	</li>
+	<li>
+	<P align=left>does not seem to pay attention and often asks questions that 
+	have already been answered</P>
+	</li>
+	<li>
+	<P align=left>to what others have posted and 
+	usually does not follow up</P>
+	</li>
+	<li>
+	<P align=left>rarely poses questions to clarify 
+	or extend material</P>
+	</li>
+	<li>
+	<P align=left>consistently poor effort answering 
+	questions in class/Forum (&quot;Hmmm, I dunno...&quot;)</P>
+	</li>
+	<li>
+	<P align=left>rarely takes stands and expresses 
+	opinions on any issue brought up in class</P>
+	</li>
+	<li>
+	<P align=left>seems indifferent much of the time</P>
+	</li>
+	</UL></li>
+	</UL>
+<P align=left><B>Presentation (does not apply to online classes)</B></P>
+<UL>
+  <LI>
+  <P align=left>3 -- excellent</P>
+<UL>
+  <li>
+	<P align=left>clear evidence of effort and time invested</P></li>
+	<li>
+	<P align=left>went beyond class material</P></li>
+	<li>
+	<P align=left>focused on important ideas, with little drag factor</P></li>
+	<li>
+	<P align=left>insightful 
+	evaluations</P></li>
+	<li>
+	<P align=left>consistently meaningful feedback to peers in Canvas</P>
+	</li>
+	</UL>
+  <LI>
+  <P align=left>2 -- decent job, characterized by some or all of the following:</P>
+
+  <UL dynamicoutline>
+    <LI>
+    <P align=left>mostly review of class material</P>
+	<LI>
+    <P align=left>some drag factor</P>
+    <LI>
+    <P align=left>some mumbling, some reliance on 
+	notes</P>
+    <LI>
+    <P align=left>decent evaluations, but could sometimes use more depth</P></LI>
+	<LI>
+    <P align=left>some feedback to peers in Canvas</P></LI>
+
+	</UL>
+  <LI>
+  <P align=left>1 -- poor, characterized by some or all of the following:</P>
+<UL>
+  <li>
+	<P align=left>poor organization with no obvious big picture</P></li>
+	<li>
+	<P align=left>excessive mumbling and poor eye contact, some reliance on 
+	notes</P></li>
+	<li>
+	<P align=left>no presentation evaluations submitted</P></li>
+	<li>
+	<P align=left>little or no timely feedback to peers in Canvas</P></li>
+	</UL>
+	</LI></UL>
+<blockquote>
+	<P align=left>*Grading is more lenient for the early presentations. Those 
+	who present near the very end are expected to deliver perfection and will be 
+	graded from that perspective.</P>
+</blockquote>
+<P align=left><b>Science articles</b></P>
+<UL>
+  <LI>
+  <P align=left>3 -- excellent articles and feedback</P>
+  <UL>
+	  <LI>
+	  <P align=left>consistent submission of well-formatted articles (see 
+	syllabus)</P>
+	  <LI>
+	  <P align=left>interesting topics, sometime provocative and controversial</P>
+	  <LI>
+	  <P align=left>insightful 
+	questions and answers</P>
+	  <LI>
+	  <P align=left>consistently meaningful feedback to peers</P>
+	  <LI>
+	  <P align=left>clear effort to educate and learn from others</P>
+  </UL>
+  <LI>
+  <P align=left>2 -- pretty good articles and responses</P>
+  <UL>
+	  <LI>
+	  <P align=left>missed a 
+	week here and there</P>
+	  <LI>
+	  <P align=left>some feedback to peers</P>
+	  <LI>
+	  <P align=left>delivery steady but not 
+	exciting</P>
+  </UL>
+
+  <LI>
+  <P align=left>1 -- poor articles</P>
+  <UL>
+	  <LI>
+	  <P align=left>inconsistent delivery and/or poor formatting</P>
+	  </LI>
+	  <LI>
+	  <P align=left>examples of poor formatting include:</P>
+	  <UL>
+		  <LI>
+		  <P align=left>meaningless subject line</P>
+		  </LI>
+		  <LI>
+		  <P align=left>excessive cut and paste</P>
+		  </LI>
+		  <LI>
+		  <P align=left>no link/reference</P>
+		  </LI>
+	  </UL>
+	  </LI>
+	  <LI>
+	  <P align=left>uninteresting articles</P>
+	  </LI>
+	  <LI>
+	  <P align=left>little or no 
+	  meaningful feedback to peers</P>
+	  </LI>
+	  <LI>
+	  <P align=left>obvious absence of enthusiasm</P>
+	  </LI>
+  </UL>
+	</LI>
+</UL>
+
+<P align=left>&nbsp;</P>
+<h3 align=left><a name="sample"></a>Sample grade evals</h3>
+<P align=left><br>
+The key to a good self-evaluation is to be more critical of oneself than of 
+others. Making excuses, rather than taking responsibility, tends to slow down 
+the learning process. The following examples demonstrate excellent 
+self-reflection and suggest that these students are ready to take the next step 
+up.</P>
+<h3 align=left><br>
+Very poor eval</h3>
+<P align=left>&quot;I deserve an A because my attendance was good and I tried really 
+hard.&quot;</P>
+<P align=left>This evaluation does not specifically address grading criteria. It is 
+simply an emotional response, with little depth or evidence of self-reflection, 
+by a student who probably did very little in class and was not aware of the 
+problem. His/her grade was significantly lower than his/her estimate.</P>
+<h3 align=left>Poor eval</h3>
+<P align=left>&quot;I believe I should earn at least a 3.0 because I did all my 
+assignments on time and took the time to read the chapter and learn the subject 
+on hand.&nbsp; I probably could have done better on the Discussion Board because some 
+weeks I did not reply a lot and some I did.&nbsp; Being that this was my first online 
+class, I feel confident that I did well even though Science was a really tough 
+subject for me. Also, I just finished the final and I feel really good about 
+it.&nbsp; Overall, I enjoyed this course even though I struggled through some of it 
+but I did manage to make it to the end and that's very important.&nbsp; Thanks and 
+take care teach...&quot;</P>
+<P align=left>This student, though good-natured, did not specifically address 
+the grading criteria. He received significantly less than his estimate.<br>
+&nbsp;</P>
+<h3 align=left>Another poor eval</h3>
+<P align=left>&quot;I believe that I deserve a grade of the range of around 2.7. 
+After completing all of my assignments, my percentage was about 80%. This shows 
+that I understood most of what we learned. Also, for almost every assignment, my 
+score was above the class average which shows that my scores were above a lot of 
+the people in the class. Even though I didn't join in the discussions as much as 
+I wanted to, I feel that my assignment scores should prove that I actually 
+learned. This class taught me a lot of new interesting things about the universe 
+that I had never known before.&quot;</P>
+<P align=left>Again, this student used his gut feeling and did not specifically 
+follow the rubric. He appears to focus mostly on homework points, which 
+(according to the rubric) are not a significant component of the grade.</P>
+<h3 align=left>Good eval</h3></CENTER>
+<p align="left">Grade Calculator: 3.0<br>
+<br>
+Exams: 2 <br>
+I was surprised at my midterm grade. I actually thought I did better than my 
+score. I studied the homework and enjoyed most of the topics, but test taking is 
+not my strongest asset. It was a learning experience and I felt good about it 
+even though my score did not reflect so. I look forward to the final exam and 
+hope my score will be better.<br>
+<br>
+Homework: 2 <br>
+I enjoyed the homework for the most part. In the beginning I was overwhelmed 
+with the number of questions, but after finishing the first couple of weeks, I 
+realized I was learning. I tried my best and towards the end actually looked 
+forward to the homework for the week. I liked the challenging aspect of some of 
+the tougher questions.<br>
+<br>
+Journals: 3<br>
+I felt really good about my journals until I read some of the sample poor 
+evaluations. I was just writing to you as the teacher and saying what was on my 
+mind. I took it as more of a venting post and leaving my insecurities in my 
+journal entries, to allow me to face my participation fears. I think I suffer 
+from the.” I think I am asking a stupid question” syndrome, and usually it’s 
+not. I enjoyed writing the journals although they were short sweet and probably 
+a little to much personal information in them. I could go either way with these, 
+I am not sure if it was a hit or miss.<br>
+<br>
+Showcase: 3 <br>
+This was definitely one of my favorite parts of week. It was very interesting to 
+read about what other people took out of the topic and what they chose to 
+highlight. I enjoyed the volcano postings in the last weeks of class and the 
+radiation postings in the earlier weeks. I posted a subject every week and feel 
+that other students from the class learned from them.<br>
+<br>
+Articles: 3 <br>
+Although I found it difficult at times to post articles that others found 
+interesting, I found the actual hunt to be the best part. I think my problem 
+with the article assignment was every week, I didn’t find articles that caught 
+the classes attention. Which in turn didn’t create great discussion like the 
+some of the other students.<br>
+<br>
+Participation: 3 <br>
+Although I responded to articles, science showcase and daily questions, I think 
+I could have been more of a leader . I tend to be a little insecure with my 
+postings and that weighed heavily on the content of my posts. I love the 
+competitiveness between others to answer the daily questions and learned a lot 
+from the other students. I tried my best and towards the end felt much more 
+comfortable to respond, after some good feedback from you and my peers. I loved 
+the thought process behind these questions and the challenge. I feel like I 
+learned well in this environment.<br>
+<br>
+Motivation/Leadership: 2 <br>
+I feel that I did motivate others to be positive and brought some enthusiasm. I 
+found other students getting discouraged and tried to throw positive thinking 
+their way, which is what helped me get through this class. I was the first to 
+post some weeks which can be considered a leadership quality, just to break the 
+ice. I feel that I supported others while motivating them and I feel good about 
+it.<br>
+<br>
+Overall:<br>
+Besides the fact that I did meet all of the basic requirement for this class, I 
+do feel that I brought something special to the table. I felt that I was 
+enthusiastic and positive during the quarter and I found this class to be one of 
+the most interesting in content and teaching styles. The other students helped 
+to make the topics and discussions more personal and interesting. I would have 
+liked to get a better score on my exams, but as long as I learned something from 
+the experience of taking them I am happy. I feel that I rose to another level 
+during this quarter as far as a leader and motivator to my peers although I am 
+not at the top of my game yet. I was one of the front runners in this class in 
+my mind along with a handful of others in the class, however you could have a 
+completely different vision. I liked the challenge and feel that I embraced it 
+with all I had and feel confident in my grade. I would obviously like a 4.0, 
+however I believe I earned around a 3.3. Thanks for the great quarter.<br>
+&nbsp;</p>
+<h3 align="left">Another good eval</h3>
+<p align="left">This is an excellent self-reflection because this student makes 
+no excuses and admits to a problem with motivation.<br>
+<br>
+Grade Calculator = 2.2<br>
+<br>
+<b>Midterm</b>: I'd like to start off by saying that, honestly, I did not put 
+forth much effort towards successfully completing the midterm. I won't try to 
+justify my reasoning for not doing so, or the lack there of, but I do realize 
+that I could have put a lot more into actually trying to achieve a decent grade, 
+which is why I gave myself a 1 in this category. I can only take this careless 
+mistake and apply hope that I'll be able to take more responsibility in the 
+future knowing that it will definitely have an impact on my overall grade.<br>
+<br>
+<b>Final</b>: I gave myself a 3 because of the time I've already put into 
+studying for this upcoming exam. I know I did worse than awful on the midterm, 
+and I'm choosing to use that as my motivation to do so much better on the final. 
+I know Igor said not to worry too much about studying extremely hard or 
+stressing, but I don't feel like I'm going &quot;too far&quot; with this. I see my 
+studying as preparation and also self-discipline, even more because I know I've 
+had the entire span of this course to prep, and simply made the decision not to. 
+I strive to receive the best score possible on the final.<br>
+<br>
+<b>Homework</b>: I will say that I've made the attempt to at least TRY and get 
+the homework completed once I had received my book for this course. (Yikes, I 
+missed the first two assignments!) But that's about it. I completed them. Some 
+weeks I tried harder to get an acceptional grade, and others I merely 
+procrastinated and ended up rushing trying to finish the assignments right 
+before they were due. I did, however, try different approaches as to gathering 
+the information that I needed from each chapter and completing the homework. 
+Sometimes I tried to just find the answers as I came upon the questions in the 
+assignment. I'd tried thoroughly reading the chapter and then answering the 
+questions. I'd even tried completing the assignment first just based off of my 
+own knowledge to familiarize myself with the questions, and then going back 
+after skimming through the chapter in attempt to receive a better grade. The 
+approach that I found the most beneficial was printing out the questions, 
+reading the chapter, while also filling in the answers, and then going back and 
+putting them into Canvas. That specific approach never got me a perfect 
+score, which it probably should have, but my grade did come out better when I 
+completed the assignment that way. Even though I do feel like I tried more in 
+this category than some others, I gave myself a 1 because of the grades I had 
+received in the end. They were horrible.<br>
+<br>
+<b>Journal</b>: I graded my Journal Participation a 2. I did this because when I 
+did submit journal entries, they met the requirements, to my understanding. They 
+weren't too short, but they weren't necessary novels either. I made sure to 
+include my comments on the course at that time, along with whatever else was on 
+my mind while writing them up. Even more so, I'd enjoyed submitting them. I 
+didn't choose a 3 in this category because I do feel like I could've given MORE 
+input on my thoughts of the course.<br>
+<br>
+<b>Showcase</b>: Honestly, for most of the quarter, I had no idea what this 
+refers to. I finally caught on near the end and started scrambling to make some 
+meaningful posts. For this reason, I have given myself a 1.<br>
+<br>
+<b>Articles</b>: I went ahead and shot for a 3 with this one. I enjoyed 
+posting/reading articles in the Discussion Board. I made sure to use articles 
+that I felt were controversial, yet interesting. I also made sure that my 
+classmates would be able to gather enough information from my posts to where 
+they'd have accurate understanding of the article without actually having to 
+read it from its original website. I believe that the article activities were my 
+favorite part of the course. Most of the time, I'd get lost in my own mix of 
+reading a million and one different articles to find the perfect one to post 
+that I thought the others would enjoy the most.<br>
+<br>
+<b>General Participation</b>: I realize that it was rare that I'd go beyond the 
+requirements, sometimes not even reach them, when it came to participation. I 
+don't recall posting more than 2 replies each week in each discussion, and I 
+know I've only posted a handful of questions in the General Discussion forum, 
+and many of them didn't even attract replies. I chose to give myself a 2 because 
+I feel like when I did reply, they were actually in-depth responses, rather than 
+simple statements like, &quot;Wow, that's a cool article,&quot; or &quot;He seems like a very 
+interesting scientist,&quot; etc... I may not have been very consistent, for which I 
+have no excuses, but I did strive to give reasonable and decent responses to the 
+postings.<br>
+<br>
+<b>Motivation/Leadership</b>: I gave myself a 2 here because I felt like many of 
+the examples given in the rubric applied to me. I usually did what was required, 
+but didn't usually go farther than that. Oddly, I did tend to stay away from the 
+more complex postings, not from intimidation, but from blatant laziness. There 
+were times when I replied to the responses I'd received to my postings, even to 
+some of the responses that were posted to other student's postings. I feel that 
+like in itself shows interest in what my classmates had to say, because 
+noticeably, many students just post what's required, then never check back and 
+reply to their responses.<br>
+<br>
+<b>Overall</b>. I believe that a 2.2 is an accurate grade to receive for this 
+course. However, knowing that the effort and motivation I displayed academically 
+wasn't as high as it should have been, I would definitely understand receiving a 
+lower score. I've never been a big fan of science itself, but this course wasn't 
+as bad/boring as I anticipated it would be. For that reason, I wish I'd paid 
+much more attention. I look forward to learning more about evolution, just as an 
+interest. That was by far the most interesting topic to me. :)</p>
+<h3 align="left">Another good eval</h3>
+<p align="left">This eval again demonstrates excellent self-reflection and 
+understanding of the learning objectives. This student received a significantly 
+higher grade than he calculated because of his honesty, good attitude, and an 
+excellent effort on some of the course components (e.g., articles).</p>
+<p align="left">Grade calculator: 1.8<br>
+<br>
+Midterm--1. I did not do as well on the mid term as I thought I should have. 
+Although I studied the material, I do not feel that I put enough time in 
+learning what I studied, and it reflected on my score.<br>
+<br>
+Final--2. Although I have not taken the final yet (mostly because of technical 
+errors) I know how much work I put into getting ready for it and feel I will do 
+well!<br>
+<br>
+Homework--2. On many of the homework assignments I gave it multiple attempts to 
+get as high a score as I could. I know that much of what I read, I could 
+comprehend and used it outside of class when the opportunity presented itself. I 
+think towards the end of the quarter my research skills improved and my HW 
+scores did as well.<br>
+<br>
+Journal--2. This score could have been better with a little more motivation on 
+my part. Although writing about what I am doing or trying to do is a weakness of 
+mine, this was an opportune time to strengthen that weakness and I didn't do 
+that well enough.<br>
+<br>
+Showcase -- 2. I tried to highlight as many of the major topics as I could. 
+Comparing myself to some of the top students, I don't think I offered as much 
+insight or did as much research, but I wasn't a slacker either.<br>
+<br>
+Articles--3. I think this area was my strongest overall. I presented an article 
+every week and I tried, I believe successfully, to find an article that 
+corresponded with what we were studying during that week. Many of my articles 
+received multiple replies from my classmates as well.<br>
+<br>
+Group Presentations--2. Although we didn't give a group presentation, I had to 
+put a number there in the rubix. I chose 2 because I feel I contributed to the 
+class as a whole with interesting articles, responses to other articles, and 
+thought provoking arguments at times.<br>
+<br>
+Motivation/Leadership--2. I think with a bit more effort in that genre, I could have 
+contributed to others' learning as well as my own. I think at times my 
+leadership in answering or trying to answer general discussion questions was 
+adequate. I answered a few of them correctly and read others' answers and found 
+out information which helped me as well.<br>
+<br>
+Overall, I found this class to be demanding, but fair. I think the syllabus 
+covered everything well enough to give the students a good understanding of what 
+was expected and how to achieve the best grade possible. I really enjoyed taking 
+this course and will take from it much more information and knowledge about our 
+universe than I had before this journey. However, I must give myself a grade on 
+the low end of the scale if I am to be honest in my evaluation. The grade 
+calculator graded it to be 1.8. I concur with that assessment!</p>
+<p align="left">&nbsp;</p>
+
+</BODY></HTML>
